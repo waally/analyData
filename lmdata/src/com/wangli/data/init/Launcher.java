@@ -37,7 +37,9 @@ public class Launcher {
 			schedulerJob();
 		}
 	}
-	
+	/**
+	 * 启动定时任务
+	 */
 	private static void schedulerJob(){
 		logger.info("MDATA start...");
 		SchedulerFactory schedulerFactory = new StdSchedulerFactory();
@@ -55,7 +57,11 @@ public class Launcher {
 			logger.fatal("scheduler start error!!!", e);
 		}
 	}
-	
+	/**
+	 * 调用所有的存储过程
+	 * @param beginTime
+	 * @param endTime
+	 */
 	private static void callProcedures(String beginTime,String endTime){
 		logger.info("MDATA start callProcedures start ...");
 		Date beginDate = DateUtil.getFormString(beginTime);
@@ -67,7 +73,12 @@ public class Launcher {
 		}
 		logger.info("MDATA do callProcedures successful ...");
 	}
-	
+	/**
+	 * 调用单个存储过程
+	 * @param callName
+	 * @param beginTime
+	 * @param endTime
+	 */
 	private static void callProcedures(String callName,String beginTime,String endTime){
 		logger.info("MDATA start callProcedures start ...");
 		Date beginDate = DateUtil.getFormString(beginTime);
@@ -77,6 +88,13 @@ public class Launcher {
 		}
 		logger.info("MDATA do callProcedures successful ...");
 	}
+	/**
+	 * 按照日期类型调用单个存储过程
+	 * @param callName
+	 * @param beginTime
+	 * @param endTime
+	 * @param type
+	 */
 	private static void callProcedures(String callName,String beginTime,String endTime,String type){
 		logger.info("MDATA start callProcedures start ...");
 		Date beginDate = DateUtil.getFormString(beginTime);
@@ -92,5 +110,4 @@ public class Launcher {
 		}
 		logger.info("MDATA do callProcedures successful ...");
 	}
-	
 }

@@ -13,21 +13,39 @@ import org.quartz.JobDataMap;
 import org.quartz.JobDetail;
 
 import com.wangli.data.sprocedure.Call;
-
+/**
+ * 
+ * @ClassName StoredProcedureJobObject
+ * @Description 存储过程定时任务对象
+ * @author wangli
+ * @date 2014-8-4 下午6:34:11
+ */
 public class StoredProcedureJobObject {
 
 	private static Logger logger = Logger.getLogger(StoredProcedureJobObject.class);
-	
+	/**
+	 * 工作名称
+	 */
 	private String jobName;
-	
+	/**
+	 * 工作所属组
+	 */
 	private String jobGroup;
-	
+	/**
+	 * 触发器名称
+	 */
 	private String triggerName;
-	
+	/**
+	 * 触发器所属时间
+	 */
 	private String triggerGroup;
-	
+	/**
+	 * 触发器所属时间
+	 */
 	private String triggerTime;
-	
+	/**
+	 * 所有调用的存储过程
+	 */
 	private List<Call> calls = new ArrayList<Call>();
 	
 	private CronTrigger dayTrigger;

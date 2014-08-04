@@ -7,7 +7,13 @@ import java.util.Calendar;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-
+/**
+ * 
+ * @ClassName DateUtil
+ * @Description 日期工具类
+ * @author wangli
+ * @date 2014-8-4 下午6:38:41
+ */
 public class DateUtil {
 
 	private static Logger logger = Logger.getLogger(DateUtil.class);

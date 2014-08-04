@@ -7,23 +7,43 @@ import java.sql.SQLException;
 import org.apache.log4j.Logger;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
-
+/**
+ * 
+ * @ClassName DataSource
+ * @Description 数据库连接封装类
+ * @author wangli
+ * @date 2014-8-4 下午6:29:26
+ */
 public class DataSource {
 
 	private static Logger logger = Logger.getLogger(DataSource.class);
-	
+	/**
+	 * 数据库驱动名称
+	 */
 	private String driverClassName;
-	
+	/**
+	 * url连接
+	 */
 	private String url;
-	
+	/**
+	 * 用户名
+	 */
 	private String userName;
-	
+	/**
+	 * 密码
+	 */
 	private String password;
-	
+	/**
+	 * 连接池连接最大数
+	 */
 	private int maxPoolSize;
-	
+	/**
+	 * 连接池连接最小数
+	 */
 	private int minPoolSize;
-	
+	/**
+	 * 连接池初始化连接数量
+	 */
 	private int initPoolSize;
 	
 	private ComboPooledDataSource ds;

@@ -8,11 +8,20 @@ import org.apache.log4j.Logger;
 
 import com.wangli.data.analysis.bean.AnalysisLog;
 import com.wangli.data.datasource.ConnectionUtil;
-
+/**
+ * 
+ * @ClassName AnalysisLogSave
+ * @Description 在数据库保存分析日志
+ * @author wangli
+ * @date 2014-8-4 下午6:25:38
+ */
 public class AnalysisLogSave {
 
 	private static Logger logger = Logger.getLogger(AnalysisLogSave.class);
-	
+	/**
+	 * 保存分析日志到数据库
+	 * @param log
+	 */
 	public void saveAnalysisLog(AnalysisLog log){
 		Connection conn = ConnectionUtil.getConn();
 		String sql = "insert into ANALYSIS_LOG(CALL_CODE,CALL_NAME,DATA_TIME,TYPE,INSERT_TIME) values(?,?,?,?,?)";

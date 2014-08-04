@@ -1,5 +1,11 @@
 package com.wangli.data.sprocedure;
-
+/**
+ * 
+ * @ClassName Call
+ * @Description 用来描述存储过程对象
+ * @author wangli
+ * @date 2014-8-4 下午6:37:57
+ */
 public class Call {
 
 	private int callType;

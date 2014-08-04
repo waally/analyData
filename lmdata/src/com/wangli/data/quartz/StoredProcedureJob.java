@@ -11,7 +11,13 @@ import com.wangli.data.service.AnalysisService;
 import com.wangli.data.sprocedure.Call;
 import com.wangli.data.sprocedure.CallType;
 import com.wangli.data.util.DateUtil;
-
+/**
+ * 存储过程的定时任务
+ * @ClassName StoredProcedureJob
+ * @Description 描述
+ * @author wangli
+ * @date 2014-8-4 下午6:33:27
+ */
 public class StoredProcedureJob implements Job{
 
 	@SuppressWarnings("unchecked")
