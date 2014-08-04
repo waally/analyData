@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="dataSource" class="com.wangli.data.datasource.DataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://10.16.8.213:3306/game_lianmeng"></property>
+		<property name="userName" value="root"></property>
+		<property name="password" value="asdfqwer"></property>
+		<property name="maxPoolSize" value="2"></property>
+		<property name="minPoolSize" value="1"></property>
+		<property name="initPoolSize" value="5"></property>
+	</bean>	
+	
+	<bean id="DayRepGameShare" class="com.wangli.data.sprocedure.Call">
+		<property name="callType" value="1"></property>
+		<property name="callName" value="DayRepGameShare"></property>
+	</bean>
+	<bean id="DayRepDistribution" class="com.wangli.data.sprocedure.Call">
+		<property name="callType" value="1"></property>
+		<property name="callName" value="DayRepDistribution"></property>
+	</bean>
+	<bean id="DayRepChannel" class="com.wangli.data.sprocedure.Call">
+		<property name="callType" value="1"></property>
+		<property name="callName" value="DayRepChannel"></property>
+	</bean>
+	<bean id="DayRepApp" class="com.wangli.data.sprocedure.Call">
+		<property name="callType" value="1"></property>
+		<property name="callName" value="DayRepApp"></property>
+	</bean>
+	<bean id="DayRepDate" class="com.wangli.data.sprocedure.Call">
+		<property name="callType" value="1"></property>
+		<property name="callName" value="DayRepDate"></property>
+	</bean>
+	<bean id="DayRepTotal" class="com.wangli.data.sprocedure.Call">
+		<property name="callType" value="1"></property>
+		<property name="callName" value="DayRepTotal"></property>
+	</bean>
+	<bean id="WeekRepDistribution" class="com.wangli.data.sprocedure.Call">
+		<property name="callType" value="4"></property>
+		<property name="callName" value="WeekRepDistribution"></property>
+	</bean>
+	<bean id="WeekRepChannel" class="com.wangli.data.sprocedure.Call">
+		<property name="callType" value="4"></property>
+		<property name="callName" value="WeekRepChannel"></property>
+	</bean>
+	<bean id="WeekRepApp" class="com.wangli.data.sprocedure.Call">
+		<property name="callType" value="4"></property>
+		<property name="callName" value="WeekRepApp"></property>
+	</bean>
+	<bean id="MonthRepDistribution" class="com.wangli.data.sprocedure.Call">
+		<property name="callType" value="2"></property>
+		<property name="callName" value="MonthRepDistribution"></property>
+	</bean>
+	<bean id="MonthRepChannel" class="com.wangli.data.sprocedure.Call">
+		<property name="callType" value="2"></property>
+		<property name="callName" value="MonthRepChannel"></property>
+	</bean>
+	<bean id="MonthRepApp" class="com.wangli.data.sprocedure.Call">
+		<property name="callType" value="2"></property>
+		<property name="callName" value="MonthRepApp"></property>
+	</bean>
+	
+	<bean class="com.wangli.data.quartz.StoredProcedureJobObject">
+		<property name="jobName" value="jobName"></property>
+		<property name="jobGroup" value="jobGroup"></property>
+		<property name="triggerName" value="triggerName"></property>
+		<property name="triggerGroup" value="triggerGroup"></property>
+		<property name="triggerTime" value="0 0 12 * * ?"></property>
+		<property name="calls">
+			<list>
+				<ref bean="DayRepGameShare"/>
+				<ref bean="DayRepDistribution"/>
+				<ref bean="DayRepChannel"/>
+				<ref bean="DayRepApp"/>
+				<ref bean="DayRepDate"/>
+				<ref bean="DayRepTotal"/>
+				<ref bean="WeekRepDistribution"/>
+				<ref bean="WeekRepChannel"/>
+				<ref bean="WeekRepApp"/>
+				<ref bean="MonthRepDistribution"/>
+				<ref bean="MonthRepChannel"/>
+				<ref bean="MonthRepApp"/>
+			</list>
+		</property>
+	</bean>	
+</beans>
