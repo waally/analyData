@@ -53,13 +53,21 @@ public class DateUtil {
 		}
 		return null;
 	}
-	
+	/**
+	 * 是否是一个星期最后一天，星期天是这个星期的最后一天。
+	 * @param date
+	 * @return
+	 */
 	public static boolean isLastWeekDay(Date date){
 		Calendar c = Calendar.getInstance();
 		c.setTime(date);
 		return c.get(Calendar.DAY_OF_WEEK)==1;
 	}
-	
+	/**
+	 * 是否是一个月的最后一天
+	 * @param date
+	 * @return
+	 */
 	public static boolean isLastMonthDay(Date date){
 		Calendar c = Calendar.getInstance();
 		c.setTime(date);
@@ -67,11 +75,8 @@ public class DateUtil {
 		return c.get(Calendar.DAY_OF_MONTH)==1;
 	}
 	public static void main(String[] args) {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		System.out.println(dateFormat.format(new java.util.Date()));
-		Calendar c = Calendar.getInstance();
-		c.add(Calendar.DATE, 1);
-		System.out.println(dateFormat.format(c.getTime()));
+		System.out.println(getLastDate(-4));
+		System.out.println(isLastWeekDay(getLastDate(-4)));
 	}
 	
 }

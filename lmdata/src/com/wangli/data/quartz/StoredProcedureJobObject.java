@@ -106,7 +106,7 @@ public class StoredProcedureJobObject {
 	}
 	public JobDetail getDayjobDetail() {
 		if(dayjobDetail==null){
-			dayjobDetail = new JobDetail("dayjob","analysis",StoredProcedureJob.class);
+			dayjobDetail = new JobDetail(jobName,jobGroup,StoredProcedureJob.class);
 			Map<String,Object> map = new HashMap<String,Object>();
 			map.put("callNames", calls);   
 	        JobDataMap dateMap = new JobDataMap(map);   

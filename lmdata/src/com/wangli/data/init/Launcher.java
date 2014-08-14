@@ -13,6 +13,7 @@ import org.quartz.impl.StdSchedulerFactory;
 
 import com.wangli.data.quartz.StoredProcedureJobObject;
 import com.wangli.data.service.AnalysisService;
+import com.wangli.data.sprocedure.CallType;
 import com.wangli.data.util.DateUtil;
 import com.wangli.data.util.SpringUtil;
 
@@ -99,12 +100,13 @@ public class Launcher {
 		logger.info("MDATA start callProcedures start ...");
 		Date beginDate = DateUtil.getFormString(beginTime);
 		Date endDate = DateUtil.getFormString(endTime);
+		int typei = Integer.parseInt(type);
 		for(Date date:DateUtil.getIntervalDays(beginDate, endDate)){
-			if(type.equals("2")&&DateUtil.isLastMonthDay(date)){
+			if(typei==CallType.MONTH&&DateUtil.isLastMonthDay(date)){
 				AnalysisService.instance.analysisData(callName,date);
-			}else if(type.equals("4")&&DateUtil.isLastWeekDay(date)){
+			}else if(typei==CallType.WEEK&&DateUtil.isLastWeekDay(date)){
 				AnalysisService.instance.analysisData(callName,date);
-			}else if(type.equals("1")){
+			}else if(typei==CallType.DAY){
 				AnalysisService.instance.analysisData(callName,date);
 			}
 		}
