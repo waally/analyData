@@ -15,9 +15,9 @@
 		<property name="initPoolSize" value="5"></property>
 	</bean>	
 	
-	<bean id="DayRepGameShare" class="com.wangli.data.sprocedure.Call">
+	<bean id="DayRepShare" class="com.wangli.data.sprocedure.Call">
 		<property name="callType" value="1"></property>
-		<property name="callName" value="DayRepGameShare"></property>
+		<property name="callName" value="DayRepShare"></property>
 	</bean>
 	<bean id="DayRepDistribution" class="com.wangli.data.sprocedure.Call">
 		<property name="callType" value="1"></property>
@@ -27,9 +27,9 @@
 		<property name="callType" value="1"></property>
 		<property name="callName" value="DayRepChannel"></property>
 	</bean>
-	<bean id="DayRepApp" class="com.wangli.data.sprocedure.Call">
+	<bean id="DayRepOrder" class="com.wangli.data.sprocedure.Call">
 		<property name="callType" value="1"></property>
-		<property name="callName" value="DayRepApp"></property>
+		<property name="callName" value="DayRepOrder"></property>
 	</bean>
 	<bean id="DayRepDate" class="com.wangli.data.sprocedure.Call">
 		<property name="callType" value="1"></property>
@@ -47,9 +47,13 @@
 		<property name="callType" value="4"></property>
 		<property name="callName" value="WeekRepChannel"></property>
 	</bean>
-	<bean id="WeekRepApp" class="com.wangli.data.sprocedure.Call">
+	<bean id="WeekRepOrder" class="com.wangli.data.sprocedure.Call">
 		<property name="callType" value="4"></property>
-		<property name="callName" value="WeekRepApp"></property>
+		<property name="callName" value="WeekRepOrder"></property>
+	</bean>
+	<bean id="WeekRepDate" class="com.wangli.data.sprocedure.Call">
+		<property name="callType" value="4"></property>
+		<property name="callName" value="WeekRepDate"></property>
 	</bean>
 	<bean id="MonthRepDistribution" class="com.wangli.data.sprocedure.Call">
 		<property name="callType" value="2"></property>
@@ -59,9 +63,13 @@
 		<property name="callType" value="2"></property>
 		<property name="callName" value="MonthRepChannel"></property>
 	</bean>
-	<bean id="MonthRepApp" class="com.wangli.data.sprocedure.Call">
+	<bean id="MonthRepOrder" class="com.wangli.data.sprocedure.Call">
 		<property name="callType" value="2"></property>
-		<property name="callName" value="MonthRepApp"></property>
+		<property name="callName" value="MonthRepOrder"></property>
+	</bean>
+	<bean id="MonthRepDate" class="com.wangli.data.sprocedure.Call">
+		<property name="callType" value="2"></property>
+		<property name="callName" value="MonthRepDate"></property>
 	</bean>
 	
 	<bean class="com.wangli.data.quartz.StoredProcedureJobObject">
@@ -72,18 +80,20 @@
 		<property name="triggerTime" value="0 0 12 * * ?"></property>
 		<property name="calls">
 			<list>
-				<ref bean="DayRepGameShare"/>
+				<ref bean="DayRepShare"/>
 				<ref bean="DayRepDistribution"/>
 				<ref bean="DayRepChannel"/>
-				<ref bean="DayRepApp"/>
+				<ref bean="DayRepOrder"/>
 				<ref bean="DayRepDate"/>
 				<ref bean="DayRepTotal"/>
 				<ref bean="WeekRepDistribution"/>
 				<ref bean="WeekRepChannel"/>
-				<ref bean="WeekRepApp"/>
+				<ref bean="WeekRepOrder"/>
+				<ref bean="WeekRepDate"/>
 				<ref bean="MonthRepDistribution"/>
 				<ref bean="MonthRepChannel"/>
-				<ref bean="MonthRepApp"/>
+				<ref bean="MonthRepOrder"/>
+				<ref bean="MonthRepDate"/>
 			</list>
 		</property>
 	</bean>	
