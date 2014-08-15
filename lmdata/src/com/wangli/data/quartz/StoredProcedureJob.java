@@ -23,7 +23,7 @@ public class StoredProcedureJob implements Job{
 	@SuppressWarnings("unchecked")
 	@Override
 	public void execute(JobExecutionContext context)throws JobExecutionException {
-		List<Call> calls = (List<Call>) context.getJobDetail().getJobDataMap().get("calls");
+		List<Call> calls = (List<Call>) context.getJobDetail().getJobDataMap().get("callNames");
 		for(Call call :calls){
 			Date date = DateUtil.getLastDate(-1);
 			if(call.getCallType()==CallType.MONTH&&DateUtil.isLastMonthDay(date)){

@@ -77,7 +77,7 @@
 		<property name="jobGroup" value="jobGroup"></property>
 		<property name="triggerName" value="triggerName"></property>
 		<property name="triggerGroup" value="triggerGroup"></property>
-		<property name="triggerTime" value="0 0 12 * * ?"></property>
+		<property name="triggerTime" value="0 20 11 * * ?"></property>
 		<property name="calls">
 			<list>
 				<ref bean="DayRepShare"/>
