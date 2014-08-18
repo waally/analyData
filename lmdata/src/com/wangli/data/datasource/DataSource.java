@@ -106,7 +106,8 @@ public class DataSource {
 			ds.setMaxPoolSize(maxPoolSize);
 			ds.setInitialPoolSize(initPoolSize);
 			ds.setMinPoolSize(minPoolSize);
-			ds.setMaxIdleTime(25200);
+			ds.setTestConnectionOnCheckout(true);
+			ds.setPreferredTestQuery("select 1");
 		}
 		try {
 			return ds.getConnection();
