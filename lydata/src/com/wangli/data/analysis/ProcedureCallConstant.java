@@ -41,6 +41,8 @@ public interface ProcedureCallConstant {
 	String MONTHREPGAMECONVERSIONRATE = "MonthRepGameConversionRate";
 	
 	String DAYREPGAMEINCOME = "DayRepGameIncome";
+	String WEEKREPGAMEINCOME = "WeekRepGameIncome";
+	String MONTHREPGAMEINCOME = "MonthRepGameIncome";
 	String DAYREPGAMETOTAL = "DayRepGameTotal";
 
 }

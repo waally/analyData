@@ -29,6 +29,7 @@ public class AnalysisServiceImpl implements AnalysisService {
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPGAMEPAYUSER, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPGAMECONSUME, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPGAMECONSUMEUSER, logTime);
+			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPGAMEINCOME, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPGAMEPAYCHANNEL, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPGAMEARPU, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPGAMEADDUSER, logTime);
@@ -39,6 +40,7 @@ public class AnalysisServiceImpl implements AnalysisService {
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPGAMEPAYUSER, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPGAMECONSUME, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPGAMECONSUMEUSER, logTime);
+			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPGAMEINCOME, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPGAMEPAYCHANNEL, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPGAMEARPU, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPGAMEADDUSER, logTime);
@@ -67,6 +69,7 @@ public class AnalysisServiceImpl implements AnalysisService {
 		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPGAMEPAYUSER, logTime);
 		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPGAMECONSUME, logTime);
 		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPGAMECONSUMEUSER, logTime);
+		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPGAMEINCOME, logTime);
 		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPGAMEPAYCHANNEL, logTime);
 		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPGAMEARPU, logTime);
 		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPGAMEADDUSER, logTime);
@@ -79,6 +82,7 @@ public class AnalysisServiceImpl implements AnalysisService {
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPGAMEPAYUSER, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPGAMECONSUME, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPGAMECONSUMEUSER, logTime);
+			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPGAMEINCOME, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPGAMEPAYCHANNEL, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPGAMEARPU, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPGAMEADDUSER, logTime);
@@ -91,6 +95,7 @@ public class AnalysisServiceImpl implements AnalysisService {
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPGAMEPAYUSER, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPGAMECONSUME, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPGAMECONSUMEUSER, logTime);
+			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPGAMEINCOME, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPGAMEPAYCHANNEL, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPGAMEARPU, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPGAMEADDUSER, logTime);
