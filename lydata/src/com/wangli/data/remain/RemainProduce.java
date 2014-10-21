@@ -32,7 +32,7 @@ public class RemainProduce {
 		Date addEndTime = DateUtil.getLastDate(addBeginTime,1);
 		Date actvieEndTime = DateUtil.getLastDate(date, 1);
 		Connection conn = ConnectionUtil.getConn();
-		String sql = "select DISTINCT t.APP_KEY from "+RemainUtil.getGameActiveTableName(addBeginTime)+" t,BASE_UNION_GAME t2 where t.LOG_TIME >='"+addBeginTime.toString()+"' and t.LOG_TIME<'"+addEndTime.toString()+"' AND t.ACTIVE_TYPE = 1 AND t.APP_KEY = t2.APP_KEY AND t2.IS_UNION = 0";
+		String sql = "select DISTINCT t.PRODUCT_ID from "+RemainUtil.getGameActiveTableName(addBeginTime)+" t,BASE_UNION_GAME t2 where t.LOG_TIME >='"+addBeginTime.toString()+"' and t.LOG_TIME<'"+addEndTime.toString()+"' AND t.ACTIVE_TYPE = 1 AND t.PRODUCT_ID = t2.PRODUCT_ID AND t2.IS_UNION = 0";
 		PreparedStatement stmt2 = conn.prepareStatement(sql);
 		ResultSet result = stmt2.executeQuery();
 		while(result.next()){
@@ -41,7 +41,7 @@ public class RemainProduce {
 			temp.setActiveEndTime(actvieEndTime.toString());
 			temp.setAddBeginTime(addBeginTime.toString());
 			temp.setAddEndTIme(addEndTime.toString());
-			temp.setAppKey(result.getInt("APP_KEY"));
+			temp.setAppKey(result.getInt("PRODUCT_ID"));
 			temp.setDay(day);
 			list.add(temp);
 		}

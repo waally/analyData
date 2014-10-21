@@ -36,7 +36,7 @@ public class SimpleAddRemainSplitProcessor implements RemainSplitProcessor{
 	
 	private Remain getRemain(Remain remain,int start,int end) throws SQLException{
 		Connection conn = ConnectionUtil.getConn();
-		String sql = "select min(UID) min,max(UID) max from (select DISTINCT UID from "+RemainUtil.getGameActiveTableName(DateUtil.getFormString(remain.getAddBeginTime()))+" t where t.LOG_TIME >='"+remain.getAddBeginTime()+"' and t.LOG_TIME<'"+remain.getAddEndTIme()+"' AND t.UID >= "+remain.getBeginUid()+" AND t.UID<="+remain.getEndUid()+" AND t.ACTIVE_TYPE = 1 and APP_KEY ="+remain.getAppKey()+" order by uid limit "+start+","+end+")t1";
+		String sql = "select min(UID) min,max(UID) max from (select DISTINCT UID from "+RemainUtil.getGameActiveTableName(DateUtil.getFormString(remain.getAddBeginTime()))+" t where t.LOG_TIME >='"+remain.getAddBeginTime()+"' and t.LOG_TIME<'"+remain.getAddEndTIme()+"' AND t.UID >= "+remain.getBeginUid()+" AND t.UID<="+remain.getEndUid()+" AND t.ACTIVE_TYPE = 1 and PRODUCT_ID ="+remain.getAppKey()+" order by uid limit "+start+","+end+")t1";
 		PreparedStatement stmt2 = conn.prepareStatement(sql);
 		ResultSet result = stmt2.executeQuery();
 		Remain temp = new Remain();

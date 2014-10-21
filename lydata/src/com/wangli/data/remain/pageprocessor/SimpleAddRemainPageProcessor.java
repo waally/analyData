@@ -19,7 +19,7 @@ public class SimpleAddRemainPageProcessor implements RemainPageProcessor{
 	@Override
 	public RemainPage handleRemain(Remain remain) throws SQLException {
 		Connection conn = ConnectionUtil.getConn();
-		String sql = "select min(UID) min,max(UID) max,count(DISTINCT UID) count from "+RemainUtil.getGameActiveTableName(DateUtil.getFormString(remain.getAddBeginTime()))+" t where t.LOG_TIME >='"+remain.getAddBeginTime()+"' and t.LOG_TIME<'"+remain.getAddEndTIme()+"' AND t.UID >= "+remain.getBeginUid()+" AND t.UID<="+remain.getEndUid()+" AND t.ACTIVE_TYPE = 1 and APP_KEY ="+remain.getAppKey();
+		String sql = "select min(UID) min,max(UID) max,count(DISTINCT UID) count from "+RemainUtil.getGameActiveTableName(DateUtil.getFormString(remain.getAddBeginTime()))+" t where t.LOG_TIME >='"+remain.getAddBeginTime()+"' and t.LOG_TIME<'"+remain.getAddEndTIme()+"' AND t.UID >= "+remain.getBeginUid()+" AND t.UID<="+remain.getEndUid()+" AND t.ACTIVE_TYPE = 1 and PRODUCT_ID ="+remain.getAppKey();
 		PreparedStatement stmt2 = conn.prepareStatement(sql);
 		ResultSet result = stmt2.executeQuery();
 		while(result.next()){

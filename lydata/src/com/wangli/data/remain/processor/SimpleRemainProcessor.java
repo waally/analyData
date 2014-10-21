@@ -24,7 +24,7 @@ public class SimpleRemainProcessor implements RemainProcessor{
 		Set<Integer> addSets = getAddSet(remain);
 		int activeCount = 0;
 		Connection conn = ConnectionUtil.getConn();
-		String sql = "select DISTINCT UID from "+RemainUtil.getGameActiveTableName(DateUtil.getFormString(remain.getActiveBeginTime()))+" t where t.LOG_TIME >='"+remain.getActiveBeginTime()+"' and t.LOG_TIME<'"+remain.getActiveEndTime()+"' AND t.UID >= "+remain.getBeginUid()+" AND t.UID<="+remain.getEndUid()+" AND t.ACTIVE_TYPE = 2 and APP_KEY ="+remain.getAppKey();
+		String sql = "select DISTINCT UID from "+RemainUtil.getGameActiveTableName(DateUtil.getFormString(remain.getActiveBeginTime()))+" t where t.LOG_TIME >='"+remain.getActiveBeginTime()+"' and t.LOG_TIME<'"+remain.getActiveEndTime()+"' AND t.UID >= "+remain.getBeginUid()+" AND t.UID<="+remain.getEndUid()+" AND t.ACTIVE_TYPE = 2 and PRODUCT_ID ="+remain.getAppKey();
 		PreparedStatement stmt2 = conn.prepareStatement(sql);
 		ResultSet result = stmt2.executeQuery();
 		while(result.next()){
@@ -42,7 +42,7 @@ public class SimpleRemainProcessor implements RemainProcessor{
 	private Set<Integer> getAddSet(Remain remain) throws SQLException{
 		Set<Integer> addSets = new HashSet<Integer>();
 		Connection conn = ConnectionUtil.getConn();
-		String sql = "select DISTINCT UID from "+RemainUtil.getGameActiveTableName(DateUtil.getFormString(remain.getAddBeginTime()))+" t where t.LOG_TIME >='"+remain.getAddBeginTime()+"' and t.LOG_TIME<'"+remain.getAddEndTIme()+"' AND t.UID >= "+remain.getBeginUid()+" AND t.UID<="+remain.getEndUid()+" AND t.ACTIVE_TYPE = 1 and APP_KEY ="+remain.getAppKey();
+		String sql = "select DISTINCT UID from "+RemainUtil.getGameActiveTableName(DateUtil.getFormString(remain.getAddBeginTime()))+" t where t.LOG_TIME >='"+remain.getAddBeginTime()+"' and t.LOG_TIME<'"+remain.getAddEndTIme()+"' AND t.UID >= "+remain.getBeginUid()+" AND t.UID<="+remain.getEndUid()+" AND t.ACTIVE_TYPE = 1 and PRODUCT_ID ="+remain.getAppKey();
 		PreparedStatement stmt2 = conn.prepareStatement(sql);
 		ResultSet result = stmt2.executeQuery();
 		while(result.next()){
