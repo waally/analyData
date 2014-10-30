@@ -24,6 +24,12 @@ public class AnalysisServiceImpl implements AnalysisService {
 		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPGAMEARPU, logTime);
 		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPGAMEADDUSER, logTime);
 		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPGAMEACTIVEUSER, logTime);
+		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPSDKGAMEPAY, logTime);
+		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPSDKGAMEPAYUSER, logTime);
+		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPSDKGAMECONSUME, logTime);
+		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPSDKGAMECONSUMEUSER, logTime);
+		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPSDKGAMEINCOME, logTime);
+		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPSDKGAMEARPU, logTime);		
 		if(DateUtil.isLastWeekDay(logTime)){
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPGAMEPAY, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPGAMEPAYUSER, logTime);
@@ -34,6 +40,12 @@ public class AnalysisServiceImpl implements AnalysisService {
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPGAMEARPU, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPGAMEADDUSER, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPGAMEACTIVEUSER, logTime);
+			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPSDKGAMEPAY, logTime);
+			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPSDKGAMEPAYUSER, logTime);
+			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPSDKGAMECONSUME, logTime);
+			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPSDKGAMECONSUMEUSER, logTime);
+			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPSDKGAMEINCOME, logTime);
+			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPSDKGAMEARPU, logTime);
 		}
 		if(DateUtil.isLastMonthDay(logTime)){
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPGAMEPAY, logTime);
@@ -45,6 +57,12 @@ public class AnalysisServiceImpl implements AnalysisService {
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPGAMEARPU, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPGAMEADDUSER, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPGAMEACTIVEUSER, logTime);
+			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPSDKGAMEPAY, logTime);
+			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPSDKGAMEPAYUSER, logTime);
+			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPSDKGAMECONSUME, logTime);
+			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPSDKGAMECONSUMEUSER, logTime);
+			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPSDKGAMEINCOME, logTime);	
+			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPSDKGAMEARPU, logTime);
 		}
 	}
 	@Override
@@ -77,6 +95,12 @@ public class AnalysisServiceImpl implements AnalysisService {
 		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPGAMEDOWNLOAD, logTime);
 		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPGAMECONVERSIONRATE, logTime);
 		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPGAMETOTAL, logTime);
+		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPSDKGAMEPAY, logTime);
+		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPSDKGAMEPAYUSER, logTime);
+		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPSDKGAMECONSUME, logTime);
+		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPSDKGAMECONSUMEUSER, logTime);
+		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPSDKGAMEINCOME, logTime);
+		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPSDKGAMEARPU, logTime);	
 		if(DateUtil.isLastWeekDay(logTime)){
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPGAMEPAY, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPGAMEPAYUSER, logTime);
@@ -89,6 +113,12 @@ public class AnalysisServiceImpl implements AnalysisService {
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPGAMEACTIVEUSER, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPGAMEDOWNLOAD, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPGAMECONVERSIONRATE, logTime);
+			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPSDKGAMEPAY, logTime);
+			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPSDKGAMEPAYUSER, logTime);
+			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPSDKGAMECONSUME, logTime);
+			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPSDKGAMECONSUMEUSER, logTime);
+			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPSDKGAMEINCOME, logTime);
+			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPSDKGAMEARPU, logTime);
 		}
 		if(DateUtil.isLastMonthDay(logTime)){
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPGAMEPAY, logTime);
@@ -102,6 +132,12 @@ public class AnalysisServiceImpl implements AnalysisService {
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPGAMEACTIVEUSER, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPGAMEDOWNLOAD, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPGAMECONVERSIONRATE, logTime);
+			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPSDKGAMEPAY, logTime);
+			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPSDKGAMEPAYUSER, logTime);
+			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPSDKGAMECONSUME, logTime);
+			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPSDKGAMECONSUMEUSER, logTime);
+			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPSDKGAMEINCOME, logTime);	
+			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPSDKGAMEARPU, logTime);
 		}
 	}
 
