@@ -44,5 +44,29 @@ public interface ProcedureCallConstant {
 	String WEEKREPGAMEINCOME = "WeekRepGameIncome";
 	String MONTHREPGAMEINCOME = "MonthRepGameIncome";
 	String DAYREPGAMETOTAL = "DayRepGameTotal";
+	
+	String DAYREPSDKGAMEPAYUSER = "DayRepSDKGamePayUser";
+	String WEEKREPSDKGAMEPAYUSER = "WeekRepSDKGamePayUser";
+	String MONTHREPSDKGAMEPAYUSER = "MonthRepSDKGamePayUser";
+	
+	String DAYREPSDKGAMEPAY = "DayRepSDKGamePay";
+	String WEEKREPSDKGAMEPAY = "WeekRepSDKGamePay";
+	String MONTHREPSDKGAMEPAY = "MonthRepSDKGamePay";
+	
+	String DAYREPSDKGAMECONSUMEUSER = "DayRepSDKGameConsumeUser";
+	String WEEKREPSDKGAMECONSUMEUSER = "WeekRepSDKGameConsumeUser";
+	String MONTHREPSDKGAMECONSUMEUSER = "MonthRepSDKGameConsumeUser";
+	
+	String DAYREPSDKGAMECONSUME = "DayRepSDKGameConsume";
+	String WEEKREPSDKGAMECONSUME = "WeekRepSDKGameConsume";
+	String MONTHREPSDKGAMECONSUME = "MonthRepSDKGameConsume";
+	
+	String DAYREPSDKGAMEARPU = "DayRepSDKGameARPU";
+	String WEEKREPSDKGAMEARPU = "WeekRepSDKGameARPU";
+	String MONTHREPSDKGAMEARPU = "MonthRepSDKGameARPU";	
+	
+	String DAYREPSDKGAMEINCOME = "DayRepSDKGameIncome";
+	String WEEKREPSDKGAMEINCOME = "WeekRepSDKGameIncome";
+	String MONTHREPSDKGAMEINCOME = "MonthRepSDKGameIncome";	
 
 }
