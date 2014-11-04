@@ -69,14 +69,17 @@ public class AnalysisServiceImpl implements AnalysisService {
 	public void analysisDayData2() {
 		Date logTime = DateUtil.getLastDate(-1);
 		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPGAMEDOWNLOAD, logTime);
+		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPOTHERGAMEDOWNLOAD, logTime);
 		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPGAMECONVERSIONRATE, logTime);
 		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPGAMETOTAL, logTime);
 		if(DateUtil.isLastWeekDay(logTime)){
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPGAMEDOWNLOAD, logTime);
+			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPOTHERGAMEDOWNLOAD, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPGAMECONVERSIONRATE, logTime);
 		}
 		if(DateUtil.isLastMonthDay(logTime)){
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPGAMEDOWNLOAD, logTime);
+			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPOTHERGAMEDOWNLOAD, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPGAMECONVERSIONRATE, logTime);
 		}
 	}
@@ -93,6 +96,7 @@ public class AnalysisServiceImpl implements AnalysisService {
 		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPGAMEADDUSER, logTime);
 		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPGAMEACTIVEUSER, logTime);
 		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPGAMEDOWNLOAD, logTime);
+		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPOTHERGAMEDOWNLOAD, logTime);
 		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPGAMECONVERSIONRATE, logTime);
 		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPGAMETOTAL, logTime);
 		AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.DAYREPSDKGAMEPAY, logTime);
@@ -112,6 +116,7 @@ public class AnalysisServiceImpl implements AnalysisService {
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPGAMEADDUSER, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPGAMEACTIVEUSER, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPGAMEDOWNLOAD, logTime);
+			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPOTHERGAMEDOWNLOAD, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPGAMECONVERSIONRATE, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPSDKGAMEPAY, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.WEEKREPSDKGAMEPAYUSER, logTime);
@@ -131,6 +136,7 @@ public class AnalysisServiceImpl implements AnalysisService {
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPGAMEADDUSER, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPGAMEACTIVEUSER, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPGAMEDOWNLOAD, logTime);
+			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPOTHERGAMEDOWNLOAD, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPGAMECONVERSIONRATE, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPSDKGAMEPAY, logTime);
 			AnalysisUtil.indexRepGameAnalysis(ProcedureCallConstant.MONTHREPSDKGAMEPAYUSER, logTime);
