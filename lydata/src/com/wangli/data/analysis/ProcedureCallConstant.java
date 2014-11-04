@@ -68,5 +68,9 @@ public interface ProcedureCallConstant {
 	String DAYREPSDKGAMEINCOME = "DayRepSDKGameIncome";
 	String WEEKREPSDKGAMEINCOME = "WeekRepSDKGameIncome";
 	String MONTHREPSDKGAMEINCOME = "MonthRepSDKGameIncome";	
+	
+	String DAYREPOTHERGAMEDOWNLOAD = "DayRepOtherGameDownload";
+	String WEEKREPOTHERGAMEDOWNLOAD = "WeekRepOtherGameDownload";
+	String MONTHREPOTHERGAMEDOWNLOAD = "MonthRepOtherGameDownload";	
 
 }
