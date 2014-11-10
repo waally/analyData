@@ -51,7 +51,7 @@ public class DateUtil {
 	public static boolean isLastWeekDay(Date date){
 		Calendar c = Calendar.getInstance();
 		c.setTime(date);
-		return c.get(Calendar.DAY_OF_WEEK)==1;
+		return c.get(Calendar.DAY_OF_WEEK)==5;
 	}
 	
 	public static boolean isLastMonthDay(Date date){
