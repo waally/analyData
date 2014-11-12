@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="adcDataAnalysis" class="com.wangli.data.analysis.ar.adc.AdcDataAnalysis">  
+        <property name="adcDataAnalysisService" ref="adcDataAnalysisService"></property>
+    </bean>
+    
+	<bean id="adcDataAnalysisService" class="com.wangli.data.analysis.ar.adc.service.AdcDataAnalysisServiceImpl">  
+        <property name="installAppLogDAO" ref="installAppLogDAO"></property>
+        <property name="deviceAppInfoDAO" ref="deviceAppInfoDAO"></property>
+        <property name="corpOrderDAO" ref="corpOrderDAO"></property>
+        <property name="factAppStatDAO" ref="factAppStatDAO"></property>
+    </bean>
+	
+</beans>

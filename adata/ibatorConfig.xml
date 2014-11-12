@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ibatorConfiguration PUBLIC "-//Apache Software Foundation//DTD Apache iBATIS Ibator Configuration 1.0//EN" "http://ibatis.apache.org/dtd/ibator-config_1_0.dtd" >
+<ibatorConfiguration >
+  <classPathEntry location="D:\Workspaces\Workspaces3\adata\lib\mysql-connector-java-5.1.27.jar" />
+  <ibatorContext id="context1" >
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://117.79.80.23:3306/gfan_distribute_platform" 
+    userId="root" password="asdfqwer" />
+    <javaModelGenerator targetPackage="com.wangli.data.analysis.ar.adc.module" targetProject="adata" />
+    <sqlMapGenerator targetPackage="com.wangli.data.analysis.ar.adc.sql" targetProject="adata" />
+    <daoGenerator targetPackage="com.wangli.data.analysis.ar.adc.dao" targetProject="adata" type="GENERIC-CI" />
+    <table schema="" tableName="install_app_log">
+    </table>
+  </ibatorContext>
+  <ibatorContext id="context2" >
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://117.79.80.23:3306/gfan_distribute_platform" 
+    userId="root" password="asdfqwer" />
+    <javaModelGenerator targetPackage="com.wangli.data.analysis.ar.adc.module" targetProject="adata" />
+    <sqlMapGenerator targetPackage="com.wangli.data.analysis.ar.adc.sql" targetProject="adata" />
+    <daoGenerator targetPackage="com.wangli.data.analysis.ar.adc.dao" targetProject="adata" type="GENERIC-CI" />
+    <table schema="" tableName="device_active_log">
+    </table>
+  </ibatorContext>
+  <ibatorContext id="context3" >
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://117.79.80.23:3306/gfan_distribute_platform" 
+    userId="root" password="asdfqwer" />
+    <javaModelGenerator targetPackage="com.wangli.data.analysis.ar.adc.module" targetProject="adata" />
+    <sqlMapGenerator targetPackage="com.wangli.data.analysis.ar.adc.sql" targetProject="adata" />
+    <daoGenerator targetPackage="com.wangli.data.analysis.ar.adc.dao" targetProject="adata" type="GENERIC-CI" />
+    <table schema="" tableName="corp_channel_tag">
+    </table>
+  </ibatorContext>
+  <ibatorContext id="context4" >
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://117.79.80.23:3306/gfan_distribute_platform" 
+    userId="root" password="asdfqwer" />
+    <javaModelGenerator targetPackage="com.wangli.data.analysis.ar.adc.module" targetProject="adata" />
+    <sqlMapGenerator targetPackage="com.wangli.data.analysis.ar.adc.sql" targetProject="adata" />
+    <daoGenerator targetPackage="com.wangli.data.analysis.ar.adc.dao" targetProject="adata" type="GENERIC-CI" />
+    <table schema="" tableName="dict_identity_storage">
+    </table>
+  </ibatorContext>
+  <ibatorContext id="context5" >
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://117.79.80.23:3306/gfan_distribute_platform" 
+    userId="root" password="asdfqwer" />
+    <javaModelGenerator targetPackage="com.wangli.data.analysis.ar.adc.module" targetProject="adata" />
+    <sqlMapGenerator targetPackage="com.wangli.data.analysis.ar.adc.sql" targetProject="adata" />
+    <daoGenerator targetPackage="com.wangli.data.analysis.ar.adc.dao" targetProject="adata" type="GENERIC-CI" />
+    <table schema="" tableName="device_app_info">
+    </table>
+  </ibatorContext>
+  <ibatorContext id="context6" >
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://117.79.80.23:3306/gfan_distribute_platform" 
+    userId="root" password="asdfqwer" />
+    <javaModelGenerator targetPackage="com.wangli.data.analysis.ar.adc.module" targetProject="adata" />
+    <sqlMapGenerator targetPackage="com.wangli.data.analysis.ar.adc.sql" targetProject="adata" />
+    <daoGenerator targetPackage="com.wangli.data.analysis.ar.adc.dao" targetProject="adata" type="GENERIC-CI" />
+    <table schema="" tableName="dict_device_model">
+    </table>
+  </ibatorContext>  
+  <ibatorContext id="context7" >
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://117.79.80.23:3306/gfan_distribute_platform" 
+    userId="root" password="asdfqwer" />
+    <javaModelGenerator targetPackage="com.wangli.data.analysis.ar.adc.module" targetProject="adata" />
+    <sqlMapGenerator targetPackage="com.wangli.data.analysis.ar.adc.sql" targetProject="adata" />
+    <daoGenerator targetPackage="com.wangli.data.analysis.ar.adc.dao" targetProject="adata" type="GENERIC-CI" />
+    <table schema="" tableName="fact_app_stat">
+    </table>
+  </ibatorContext> 
+  <ibatorContext id="context8" >
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://117.79.80.23:3306/gfan_distribute_platform" 
+    userId="root" password="asdfqwer" />
+    <javaModelGenerator targetPackage="com.wangli.data.analysis.ar.adc.module" targetProject="adata" />
+    <sqlMapGenerator targetPackage="com.wangli.data.analysis.ar.adc.sql" targetProject="adata" />
+    <daoGenerator targetPackage="com.wangli.data.analysis.ar.adc.dao" targetProject="adata" type="GENERIC-CI" />
+    <table schema="" tableName="corp_order">
+    </table>
+  </ibatorContext>   
+</ibatorConfiguration>
