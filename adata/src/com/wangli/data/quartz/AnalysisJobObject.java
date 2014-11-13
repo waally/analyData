@@ -44,7 +44,7 @@ public class AnalysisJobObject {
 	 */
 	private String triggerTime;
 	/**
-	 * 所有调用的存储过程
+	 * 所有调用的数据分析处理器
 	 */
 	private List<DataAnalysis> calls = new ArrayList<DataAnalysis>();
 	

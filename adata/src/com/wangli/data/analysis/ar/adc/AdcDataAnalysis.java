@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 import com.wangli.data.analysis.DataAnalysis;
 import com.wangli.data.analysis.ar.adc.module.DeviceAppAddInfo;
 import com.wangli.data.analysis.ar.adc.module.FactAppAddStat;
@@ -15,17 +17,19 @@ import com.wangli.data.util.DateUtil;
 
 public class AdcDataAnalysis implements DataAnalysis{
 
-	private int type;
+	private int analysisType;
 	
 	private Date date;
 	
-	private static final int maxLength = 1000;
+	private static final int maxLength = 10000;
 	
 	private AdcDataAnalysisService adcDataAnalysisService;
 	
+	private static Logger logger = Logger.getLogger(AdcDataAnalysis.class);
+	
 	@Override
 	public int getAnalysisType() {
-		return type;
+		return analysisType;
 	}
 
 	@Override
@@ -40,7 +44,7 @@ public class AdcDataAnalysis implements DataAnalysis{
 			}
 			handleEnd();
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("ar system adc data analysis failed",e);
 		}
 	}
 
@@ -125,7 +129,7 @@ public class AdcDataAnalysis implements DataAnalysis{
 	
 	@Override
 	public void setDate(Date date) {
-		this.date = date;
+		this.date = DateUtil.getLastDate(date, 1);
 	}
 
 	@Override
@@ -143,8 +147,8 @@ public class AdcDataAnalysis implements DataAnalysis{
 	}
 
 	@Override
-	public void setAnalysisType(int type) {
-		this.type = type;
+	public void setAnalysisType(int analysisType) {
+		this.analysisType = analysisType;
 	}
 	
 }

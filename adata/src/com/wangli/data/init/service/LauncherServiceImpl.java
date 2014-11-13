@@ -26,7 +26,7 @@ public class LauncherServiceImpl implements LauncherService {
 	}
 	
 	public static void main(String[] args) {
-		DataAnalysis analysis = LauncherService.instance.getDataAnalysis(0);
+		DataAnalysis analysis = LauncherService.instance.getDataAnalysis(1);
 		analysis.setDate(DateUtil.getLastDate(-3));
 		analysis.processAnalysis();
 	}

@@ -17,19 +17,34 @@ import org.apache.log4j.Logger;
 public class DateUtil {
 
 	private static Logger logger = Logger.getLogger(DateUtil.class);
-	
+	/**
+	 * 获取和指定时间间隔指定天数的时间
+	 * @param date
+	 * @param last
+	 * @return
+	 */
 	public static Date getLastDate(Date date,int last){
 		Calendar c = Calendar.getInstance();
 		c.setTime(date);
 		c.add(Calendar.DATE, last);
 		return new Date(c.getTimeInMillis());
 	}
+	/**
+	 * 获取和现在间隔指定天数的时间
+	 * @param last
+	 * @return
+	 */
 	public static Date getLastDate(int last){
 		Calendar c = Calendar.getInstance();
 		c.add(Calendar.DATE, last);
 		return new Date(c.getTimeInMillis());
 	}
-	
+	/**
+	 * 从开始时间到结束时间获取间隔的每一天
+	 * @param beginDate
+	 * @param endDate
+	 * @return
+	 */
 	public static Date[] getIntervalDays(Date beginDate,Date endDate){
 		List<Date> dates = new ArrayList<Date>();
 		Calendar bc = Calendar.getInstance();
@@ -42,7 +57,11 @@ public class DateUtil {
 		}
 		return dates.toArray(new Date[dates.size()]);
 	}
-	
+	/**
+	 * 转换字符串格式到日期格式
+	 * @param date
+	 * @return
+	 */
 	public static Date getFormString(String date){
 		try {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -53,7 +72,11 @@ public class DateUtil {
 		}
 		return null;
 	}
-	
+	/**
+	 * 转换日期格式到字符串格式
+	 * @param date
+	 * @return
+	 */
 	public static String getFormDate(java.util.Date date){
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		return dateFormat.format(date);
@@ -78,10 +101,6 @@ public class DateUtil {
 		c.setTime(date);
 		c.add(Calendar.DATE, 1);
 		return c.get(Calendar.DAY_OF_MONTH)==1;
-	}
-	public static void main(String[] args) {
-		System.out.println(getLastDate(-4));
-		System.out.println(isLastWeekDay(getLastDate(-4)));
 	}
 	
 }

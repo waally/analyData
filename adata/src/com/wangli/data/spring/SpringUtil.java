@@ -12,7 +12,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class SpringUtil {
 
 	private static ApplicationContext springContext = new ClassPathXmlApplicationContext("applicationContext.xml");
-	
+	/**
+	 * 获取spring的上下文
+	 * @return
+	 */
 	public static ApplicationContext getSpringContext() {
 		return springContext;
 	}

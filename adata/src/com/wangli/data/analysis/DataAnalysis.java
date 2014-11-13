@@ -1,7 +1,12 @@
 package com.wangli.data.analysis;
 
 import java.sql.Date;
-
+/**
+ * @ClassName DataAnalysis
+ * @Description 描述 数据分析处理器
+ * @author wangli
+ * @date 2014-11-13 下午2:35:49
+ */
 public interface DataAnalysis {
 	/**
 	 * 获取改数据分析器再整个程序中的唯一值
