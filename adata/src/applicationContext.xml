@@ -13,4 +13,17 @@
 	<import resource="applicationContext-dao.xml"/>
 	<import resource="applicationContext-analysis.xml"/>
 	
+	<bean class="com.wangli.data.quartz.AnalysisJobObject">
+		<property name="jobName" value="jobName"></property>
+		<property name="jobGroup" value="jobGroup"></property>
+		<property name="triggerName" value="triggerName"></property>
+		<property name="triggerGroup" value="triggerGroup"></property>
+		<property name="triggerTime" value="30 43 11 * * ?"></property>
+		<property name="calls">
+			<list>
+				<ref bean="adcDataAnalysis"/>
+			</list>
+		</property>
+	</bean>	
+	
 </beans>

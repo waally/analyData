@@ -6,6 +6,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
 	<bean id="adcDataAnalysis" class="com.wangli.data.analysis.ar.adc.AdcDataAnalysis">  
+        <property name="analysisType" value="1"></property>
         <property name="adcDataAnalysisService" ref="adcDataAnalysisService"></property>
     </bean>
     
