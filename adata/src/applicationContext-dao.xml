@@ -36,7 +36,7 @@
 	<bean id="deviceActiveLogDAO" class="com.wangli.data.analysis.ar.adc.dao.DeviceActiveLogDAOImpl">
 		<constructor-arg ref="sqlMapClient"/>
 	</bean>
-	<bean id="deviceAppInfoDAO" class="com.wangli.data.analysis.ar.adc.dao.DeviceAppInfoDAOImpl">
+	<bean id="deviceAppAddInfoDAO" class="com.wangli.data.analysis.ar.adc.dao.DeviceAppAddInfoDAOImpl">
 		<constructor-arg ref="sqlMapClient"/>
 	</bean>
 	<bean id="dictDeviceModelDAO" class="com.wangli.data.analysis.ar.adc.dao.DictDeviceModelDAOImpl">
@@ -45,7 +45,7 @@
 	<bean id="dictIdentityStorageDAO" class="com.wangli.data.analysis.ar.adc.dao.DictIdentityStorageDAOImpl">
 		<constructor-arg ref="sqlMapClient"/>
 	</bean>
-	<bean id="factAppStatDAO" class="com.wangli.data.analysis.ar.adc.dao.FactAppStatDAOImpl">
+	<bean id="factAppAddStatDAO" class="com.wangli.data.analysis.ar.adc.dao.FactAppAddStatDAOImpl">
 		<constructor-arg ref="sqlMapClient"/>
 	</bean>
 	<bean id="installAppLogDAO" class="com.wangli.data.analysis.ar.adc.dao.InstallAppLogDAOImpl">

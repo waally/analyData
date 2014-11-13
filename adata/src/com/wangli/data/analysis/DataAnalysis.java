@@ -9,6 +9,10 @@ public interface DataAnalysis {
 	 */
 	int getAnalysisType();
 	/**
+	 * 设置数据分析器在整个程序中的唯一值
+	 */
+	void setAnalysisType(int type);
+	/**
 	 * 进行分析处理
 	 */
 	void processAnalysis();

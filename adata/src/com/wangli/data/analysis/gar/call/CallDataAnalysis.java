@@ -30,4 +30,10 @@ public class CallDataAnalysis implements DataAnalysis{
 		return null;
 	}
 
+	@Override
+	public void setAnalysisType(int type) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

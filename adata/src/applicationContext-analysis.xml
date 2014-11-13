@@ -11,9 +11,9 @@
     
 	<bean id="adcDataAnalysisService" class="com.wangli.data.analysis.ar.adc.service.AdcDataAnalysisServiceImpl">  
         <property name="installAppLogDAO" ref="installAppLogDAO"></property>
-        <property name="deviceAppInfoDAO" ref="deviceAppInfoDAO"></property>
+        <property name="deviceAppAddInfoDAO" ref="deviceAppAddInfoDAO"></property>
         <property name="corpOrderDAO" ref="corpOrderDAO"></property>
-        <property name="factAppStatDAO" ref="factAppStatDAO"></property>
+        <property name="factAppAddStatDAO" ref="factAppAddStatDAO"></property>
     </bean>
 	
 </beans>

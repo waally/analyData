@@ -7,14 +7,16 @@ import java.util.List;
 import java.util.Map;
 
 import com.wangli.data.analysis.DataAnalysis;
-import com.wangli.data.analysis.ar.adc.module.DeviceAppInfo;
-import com.wangli.data.analysis.ar.adc.module.FactAppStat;
+import com.wangli.data.analysis.ar.adc.module.DeviceAppAddInfo;
+import com.wangli.data.analysis.ar.adc.module.FactAppAddStat;
 import com.wangli.data.analysis.ar.adc.module.InstallAppLog;
 import com.wangli.data.analysis.ar.adc.service.AdcDataAnalysisService;
 import com.wangli.data.util.DateUtil;
 
 public class AdcDataAnalysis implements DataAnalysis{
 
+	private int type;
+	
 	private Date date;
 	
 	private static final int maxLength = 1000;
@@ -23,7 +25,7 @@ public class AdcDataAnalysis implements DataAnalysis{
 	
 	@Override
 	public int getAnalysisType() {
-		return 0;
+		return type;
 	}
 
 	@Override
@@ -59,11 +61,11 @@ public class AdcDataAnalysis implements DataAnalysis{
 	private void handleInstall(int start,int length) throws SQLException{
 		List<InstallAppLog> list = adcDataAnalysisService.getInstallList(date, start, length);
 		for(InstallAppLog install : list){
-			DeviceAppInfo da = new DeviceAppInfo();
+			DeviceAppAddInfo da = new DeviceAppAddInfo();
 			da.setImei(install.getImei());
 			da.setMac(install.getMac());
 			da.setOrderId(install.getOrderId());
-			DeviceAppInfo temp = adcDataAnalysisService.getDeviceApp(da.getMac(),da.getImei(),da.getOrderId());
+			DeviceAppAddInfo temp = adcDataAnalysisService.getDeviceApp(da.getMac(),da.getImei(),da.getOrderId());
 			if(temp==null){
 				if(install.getClientName().equals("gfan.assistant.box")){
 					da.setIdentityId(install.getTagId());
@@ -93,21 +95,21 @@ public class AdcDataAnalysis implements DataAnalysis{
 	 * @throws SQLException
 	 */
 	private void handleEnd() throws SQLException{
-		List<DeviceAppInfo> list = adcDataAnalysisService.getDeviceApps(date);
-		Map<String,DeviceAppInfo> map = new HashMap<String,DeviceAppInfo>();
-		for(DeviceAppInfo da : list){
+		List<DeviceAppAddInfo> list = adcDataAnalysisService.getDeviceApps(date);
+		Map<String,DeviceAppAddInfo> map = new HashMap<String,DeviceAppAddInfo>();
+		for(DeviceAppAddInfo da : list){
 			String key = da.getInstallDate()+","+da.getOrderId()+","+da.getIdentityId()+"," +da.getIdentityMark()+","+da.getModel();
 			map.put(key, da);
 		}
-		for(DeviceAppInfo da : map.values()){
+		for(DeviceAppAddInfo da : map.values()){
 			int installCount = adcDataAnalysisService.getDeviceAppCount(da.getInstallDate(),da.getModel(),da.getOrderId(),da.getIdentityId(),da.getIdentityMark());
-			FactAppStat fAppStat = new FactAppStat();
+			FactAppAddStat fAppStat = new FactAppAddStat();
 			fAppStat.setDataTime(DateUtil.getFormString(da.getInstallDate()));
 			fAppStat.setModel(da.getModel());
 			fAppStat.setIdentityId(da.getIdentityId());
 			fAppStat.setIdentityMark(da.getIdentityMark());
 			fAppStat.setOrderId(da.getOrderId());
-			FactAppStat temp = adcDataAnalysisService.getFactAppStat(fAppStat.getModel(),fAppStat.getDataTime(),fAppStat.getOrderId(),fAppStat.getIdentityId(),fAppStat.getIdentityMark());
+			FactAppAddStat temp = adcDataAnalysisService.getFactAppStat(fAppStat.getModel(),fAppStat.getDataTime(),fAppStat.getOrderId(),fAppStat.getIdentityId(),fAppStat.getIdentityMark());
 			fAppStat.setInstallCount(installCount);
 			fAppStat.setPkg(da.getPkg());
 			fAppStat.setAppName(adcDataAnalysisService.getCorpOrder(fAppStat.getOrderId()).getOrderName());
@@ -138,6 +140,11 @@ public class AdcDataAnalysis implements DataAnalysis{
 	public void setAdcDataAnalysisService(
 			AdcDataAnalysisService adcDataAnalysisService) {
 		this.adcDataAnalysisService = adcDataAnalysisService;
+	}
+
+	@Override
+	public void setAnalysisType(int type) {
+		this.type = type;
 	}
 	
 }

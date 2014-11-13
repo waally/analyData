@@ -5,8 +5,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.wangli.data.analysis.ar.adc.module.CorpOrder;
-import com.wangli.data.analysis.ar.adc.module.DeviceAppInfo;
-import com.wangli.data.analysis.ar.adc.module.FactAppStat;
+import com.wangli.data.analysis.ar.adc.module.DeviceAppAddInfo;
+import com.wangli.data.analysis.ar.adc.module.FactAppAddStat;
 import com.wangli.data.analysis.ar.adc.module.InstallAppLog;
 
 public interface AdcDataAnalysisService {
@@ -46,20 +46,20 @@ public interface AdcDataAnalysisService {
 	 * @return
 	 * @throws SQLException
 	 */
-	DeviceAppInfo getDeviceApp(String mac,String imei,int orderId) throws SQLException;
+	DeviceAppAddInfo getDeviceApp(String mac,String imei,int orderId) throws SQLException;
 	/**
 	 * 根据日期获取接收日期是当天的所有的设备应用信息
 	 * @param receiveDate 接收日期
 	 * @return
 	 * @throws SQLException
 	 */
-	List<DeviceAppInfo> getDeviceApps(Date receiveDate) throws SQLException;
+	List<DeviceAppAddInfo> getDeviceApps(Date receiveDate) throws SQLException;
 	/**
 	 * 插入设备应用信息到数据库
 	 * @param da 设备应用信息
 	 * @throws SQLException
 	 */
-	void insertDeviceApp(DeviceAppInfo da) throws SQLException;
+	void insertDeviceApp(DeviceAppAddInfo da) throws SQLException;
 	/**
 	 * 根据日期删除接收日期是当天的所有的设备应用信息
 	 * @param receiveDate 接收日期
@@ -71,7 +71,7 @@ public interface AdcDataAnalysisService {
 	 * @param da 设备应用信息
 	 * @throws SQLException
 	 */
-	void updateDeviceApp(DeviceAppInfo da) throws SQLException;
+	void updateDeviceApp(DeviceAppAddInfo da) throws SQLException;
 	/**
 	 * 获取应用新增的信息
 	 * @param model
@@ -82,13 +82,13 @@ public interface AdcDataAnalysisService {
 	 * @return
 	 * @throws SQLException
 	 */
-	FactAppStat getFactAppStat(String model,java.util.Date dataTime,int orderId,int identityId,int identityMark) throws SQLException;
+	FactAppAddStat getFactAppStat(String model,java.util.Date dataTime,int orderId,int identityId,int identityMark) throws SQLException;
 	/**
 	 * 插入应用新增的信息到数据库
 	 * @param fAppStat
 	 * @throws SQLException
 	 */
-	void insertFactAppStat(FactAppStat fAppStat) throws SQLException;
+	void insertFactAppStat(FactAppAddStat fAppStat) throws SQLException;
 	/**
 	 * 根据主键删除应用新增的信息
 	 * @param id
