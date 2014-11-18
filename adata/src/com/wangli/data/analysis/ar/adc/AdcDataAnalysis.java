@@ -9,8 +9,8 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import com.wangli.data.analysis.DataAnalysis;
-import com.wangli.data.analysis.ar.adc.module.DeviceAppAddInfo;
-import com.wangli.data.analysis.ar.adc.module.FactAppAddStat;
+import com.wangli.data.analysis.ar.adc.module.DeviceAppInfo;
+import com.wangli.data.analysis.ar.adc.module.FactAppStat;
 import com.wangli.data.analysis.ar.adc.module.InstallAppLog;
 import com.wangli.data.analysis.ar.adc.service.AdcDataAnalysisService;
 import com.wangli.data.util.DateUtil;
@@ -29,7 +29,7 @@ public class AdcDataAnalysis implements DataAnalysis{
 	
 	@Override
 	public int getAnalysisType() {
-		return analysisType;
+		return this.analysisType;
 	}
 
 	@Override
@@ -65,11 +65,11 @@ public class AdcDataAnalysis implements DataAnalysis{
 	private void handleInstall(int start,int length) throws SQLException{
 		List<InstallAppLog> list = adcDataAnalysisService.getInstallList(date, start, length);
 		for(InstallAppLog install : list){
-			DeviceAppAddInfo da = new DeviceAppAddInfo();
+			DeviceAppInfo da = new DeviceAppInfo();
 			da.setImei(install.getImei());
 			da.setMac(install.getMac());
 			da.setOrderId(install.getOrderId());
-			DeviceAppAddInfo temp = adcDataAnalysisService.getDeviceApp(da.getMac(),da.getImei(),da.getOrderId());
+			DeviceAppInfo temp = adcDataAnalysisService.getDeviceApp(da.getMac(),da.getImei(),da.getOrderId());
 			if(temp==null){
 				if(install.getClientName().equals("gfan.assistant.box")){
 					da.setIdentityId(install.getTagId());
@@ -88,9 +88,13 @@ public class AdcDataAnalysis implements DataAnalysis{
 				da.setModel(install.getModel());
 				da.setUserId(install.getUserId());
 				adcDataAnalysisService.insertDeviceApp(da);
+				logger.info("mac:"+da.getMac()+",imei:"+da.getImei()+",orderId:"+da.getOrderId()+" install successful");
 			}else if(temp.getStatus() == 2){
 				temp.setStatus(3);
 				adcDataAnalysisService.updateDeviceApp(temp);
+				logger.info("mac:"+da.getMac()+",imei:"+da.getImei()+",orderId:"+da.getOrderId()+" statu is 2");
+			}else{
+				logger.info("mac:"+da.getMac()+",imei:"+da.getImei()+",orderId:"+da.getOrderId()+" haved installed");
 			}
 		}
 	}
@@ -99,21 +103,21 @@ public class AdcDataAnalysis implements DataAnalysis{
 	 * @throws SQLException
 	 */
 	private void handleEnd() throws SQLException{
-		List<DeviceAppAddInfo> list = adcDataAnalysisService.getDeviceApps(date);
-		Map<String,DeviceAppAddInfo> map = new HashMap<String,DeviceAppAddInfo>();
-		for(DeviceAppAddInfo da : list){
+		List<DeviceAppInfo> list = adcDataAnalysisService.getDeviceApps(date);
+		Map<String,DeviceAppInfo> map = new HashMap<String,DeviceAppInfo>();
+		for(DeviceAppInfo da : list){
 			String key = da.getInstallDate()+","+da.getOrderId()+","+da.getIdentityId()+"," +da.getIdentityMark()+","+da.getModel();
 			map.put(key, da);
 		}
-		for(DeviceAppAddInfo da : map.values()){
+		for(DeviceAppInfo da : map.values()){
 			int installCount = adcDataAnalysisService.getDeviceAppCount(da.getInstallDate(),da.getModel(),da.getOrderId(),da.getIdentityId(),da.getIdentityMark());
-			FactAppAddStat fAppStat = new FactAppAddStat();
+			FactAppStat fAppStat = new FactAppStat();
 			fAppStat.setDataTime(DateUtil.getFormString(da.getInstallDate()));
 			fAppStat.setModel(da.getModel());
 			fAppStat.setIdentityId(da.getIdentityId());
 			fAppStat.setIdentityMark(da.getIdentityMark());
 			fAppStat.setOrderId(da.getOrderId());
-			FactAppAddStat temp = adcDataAnalysisService.getFactAppStat(fAppStat.getModel(),fAppStat.getDataTime(),fAppStat.getOrderId(),fAppStat.getIdentityId(),fAppStat.getIdentityMark());
+			FactAppStat temp = adcDataAnalysisService.getFactAppStat(fAppStat.getModel(),fAppStat.getDataTime(),fAppStat.getOrderId(),fAppStat.getIdentityId(),fAppStat.getIdentityMark());
 			fAppStat.setInstallCount(installCount);
 			fAppStat.setPkg(da.getPkg());
 			fAppStat.setAppName(adcDataAnalysisService.getCorpOrder(fAppStat.getOrderId()).getOrderName());
