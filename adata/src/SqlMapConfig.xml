@@ -5,9 +5,9 @@
     <sqlMap resource="com/wangli/data/analysis/ar/adc/sql/corp_channel_tag_SqlMap.xml" />  
     <sqlMap resource="com/wangli/data/analysis/ar/adc/sql/corp_order_SqlMap.xml" />  
     <sqlMap resource="com/wangli/data/analysis/ar/adc/sql/device_active_log_SqlMap.xml" />  
-    <sqlMap resource="com/wangli/data/analysis/ar/adc/sql/device_app_add_info_SqlMap.xml" />  
+    <sqlMap resource="com/wangli/data/analysis/ar/adc/sql/device_app_info_SqlMap.xml" />  
     <sqlMap resource="com/wangli/data/analysis/ar/adc/sql/dict_device_model_SqlMap.xml" />  
     <sqlMap resource="com/wangli/data/analysis/ar/adc/sql/dict_identity_storage_SqlMap.xml" />  
-    <sqlMap resource="com/wangli/data/analysis/ar/adc/sql/fact_app_add_stat_SqlMap.xml" />  
+    <sqlMap resource="com/wangli/data/analysis/ar/adc/sql/fact_app_stat_SqlMap.xml" />  
     <sqlMap resource="com/wangli/data/analysis/ar/adc/sql/install_app_log_SqlMap.xml" /> 
 </sqlMapConfig>  

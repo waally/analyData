@@ -12,9 +12,19 @@
     
 	<bean id="adcDataAnalysisService" class="com.wangli.data.analysis.ar.adc.service.AdcDataAnalysisServiceImpl">  
         <property name="installAppLogDAO" ref="installAppLogDAO"></property>
-        <property name="deviceAppAddInfoDAO" ref="deviceAppAddInfoDAO"></property>
+        <property name="deviceAppInfoDAO" ref="deviceAppInfoDAO"></property>
         <property name="corpOrderDAO" ref="corpOrderDAO"></property>
-        <property name="factAppAddStatDAO" ref="factAppAddStatDAO"></property>
+        <property name="factAppStatDAO" ref="factAppStatDAO"></property>
+    </bean>
+    
+    <bean id="callDataAnalysis" class="com.wangli.data.analysis.gar.call.CallDataAnalysis">  
+        <property name="analysisType" value="2"></property>
+        <property name="dataSource" ref="dataSource"></property>
+        <property name="calls">
+			<list>
+				<value>RepAppDay</value>
+			</list>
+		</property>
     </bean>
 	
 </beans>
