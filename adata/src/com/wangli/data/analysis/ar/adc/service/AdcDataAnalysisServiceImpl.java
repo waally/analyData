@@ -46,9 +46,9 @@ public class AdcDataAnalysisServiceImpl implements AdcDataAnalysisService{
 		return deviceAppInfoDAO.countByExample(example);
 	}
 	
-	public DeviceAppInfo getDeviceApp(String mac,String imei,int orderId) throws SQLException{
+	public DeviceAppInfo getDeviceApp(String imei,int orderId) throws SQLException{
 		DeviceAppInfoExample example = new DeviceAppInfoExample();
-		example.createCriteria().andMacEqualTo(mac).andImeiEqualTo(imei).andOrderIdEqualTo(orderId);
+		example.createCriteria().andImeiEqualTo(imei).andOrderIdEqualTo(orderId);
 		List<DeviceAppInfo> list = deviceAppInfoDAO.selectByExample(example);
 		if(list==null||list.size()==0){
 			return null;
