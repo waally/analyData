@@ -69,7 +69,7 @@ public class AdcDataAnalysis implements DataAnalysis{
 			da.setImei(install.getImei());
 			da.setMac(install.getMac());
 			da.setOrderId(install.getOrderId());
-			DeviceAppInfo temp = adcDataAnalysisService.getDeviceApp(da.getMac(),da.getImei(),da.getOrderId());
+			DeviceAppInfo temp = adcDataAnalysisService.getDeviceApp(da.getImei(),da.getOrderId());
 			if(temp==null){
 				if(install.getClientName().equals("gfan.assistant.box")){
 					da.setIdentityId(install.getTagId());
