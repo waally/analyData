@@ -40,13 +40,12 @@ public interface AdcDataAnalysisService {
 	int getDeviceAppCount(String installDate,String model,int orderId,int identityId,int identityMark) throws SQLException;
 	/**
 	 * 获取设备应用信息
-	 * @param mac MAC地址
 	 * @param imei 移动设备唯一编号
 	 * @param orderId 订单编号
 	 * @return
 	 * @throws SQLException
 	 */
-	DeviceAppInfo getDeviceApp(String mac,String imei,int orderId) throws SQLException;
+	DeviceAppInfo getDeviceApp(String imei,int orderId) throws SQLException;
 	/**
 	 * 根据日期获取接收日期是当天的所有的设备应用信息
 	 * @param receiveDate 接收日期
