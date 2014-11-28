@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="user" value="${jdbc.user.query}"></property>
+		<property name="password" value="${jdbc.password.query}"></property>
+		<property name="jdbcUrl" value="${jdbc.url.query}"></property>
+		<property name="driverClass" value="${jdbc.driverClass.query}"></property>
+		<property name="minPoolSize" value="${c3p0.minPoolSize}"></property>
+		<property name="initialPoolSize" value="${c3p0.initialPoolSize}"></property>
+		<property name="maxPoolSize" value="${c3p0.maxPoolSize}"></property>
+		<property name="acquireIncrement" value="${c3p0.acquireIncrement}"></property>
+		<property name="maxStatements" value="${c3p0.maxStatements}"></property>
+		<property name="maxStatementsPerConnection" value="${c3p0.maxStatementsPerConnection}"></property>
+		<property name="maxIdleTime" value="${c3p0.maxIdleTime}"></property>
+	</bean>	
+	
+	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">  
+        <property name="configLocation">  <!-- name 为configLocation不可为其他 -->  
+            <value>classpath:SqlMapConfig.xml</value> <!-- 不区分大小写，路径前可加'/' -->  
+        </property>  
+        <property name="dataSource">  
+            <ref local="dataSource" />  
+        </property>  
+    </bean> 
+    
+	<bean id="clientEventLogDAO" class="com.wangli.data.etl.report.gfanmarket.dao.ClientEventLogDAOImpl">
+		<constructor-arg ref="sqlMapClient"/>
+	</bean>
+	<bean id="gfanClientEventBannerclickDAO" class="com.wangli.data.etl.report.gfanmarket.dao.GfanClientEventBannerclickDAOImpl">
+		<constructor-arg ref="sqlMapClient"/>
+	</bean>
+	<bean id="gfanClientEventDownloadDAO" class="com.wangli.data.etl.report.gfanmarket.dao.GfanClientEventDownloadDAOImpl">
+		<constructor-arg ref="sqlMapClient"/>
+	</bean>
+	<bean id="statVersionDAO" class="com.wangli.data.etl.report.gfanmarket.dao.StatVersionDAOImpl">
+		<constructor-arg ref="sqlMapClient"/>
+	</bean>
+	<bean id="gfanCfgRankProductDAO" class="com.wangli.data.etl.report.gfanmarket.dao.GfanCfgRankProductDAOImpl">
+		<constructor-arg ref="sqlMapClient"/>
+	</bean>
+	<bean id="gfanCodeBannerDAO" class="com.wangli.data.etl.report.gfanmarket.dao.GfanCodeBannerDAOImpl">
+		<constructor-arg ref="sqlMapClient"/>
+	</bean>
+	
+</beans>

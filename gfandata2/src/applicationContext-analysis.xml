@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="gfanCallHandler" class="com.wangli.data.analysis.common.call.CallDataAnalysis">  
+        <property name="name" value="gfancall"></property>
+        <property name="dataSource" ref="dataSource"></property>
+        <property name="calls">
+			<list>
+				<value>DayRepBanner</value>
+				<value>DayRepRecommend</value>
+			</list>
+		</property>
+    </bean>
+    
+	<bean id="bannerClickHandler" class="com.wangli.data.etl.report.gfanmarket.impl.BannerClickCleanHandler">  
+        <property name="name" value="bannerclick"></property>
+        <property name="bannerClickCleanService" ref="bannerClickCleanService"></property>
+    </bean>
+    
+	<bean id="downLoadHandler" class="com.wangli.data.etl.report.gfanmarket.impl.BannerDownLoadCleanHandler">  
+        <property name="name" value="download"></property>
+        <property name="bannerDownLoadCleanService" ref="bannerDownLoadCleanService"></property>
+    </bean>
+    
+	<bean id="recommendClickHandler" class="com.wangli.data.etl.report.gfanmarket.impl.RecommendClickCleanHandler">  
+        <property name="name" value="recommendclick"></property>
+        <property name="recommendClickCleanService" ref="recommendClickCleanService"></property>
+    </bean>
+    
+	<bean id="commonService" class="com.wangli.data.etl.report.gfanmarket.service.CommonServiceImpl">  
+        <property name="statVersionDAO" ref="statVersionDAO"></property>
+        <property name="gfanCfgRankProductDAO" ref="gfanCfgRankProductDAO"></property>
+        <property name="gfanCodeBannerDAO" ref="gfanCodeBannerDAO"></property>
+    </bean>
+    
+	<bean id="bannerClickCleanService" class="com.wangli.data.etl.report.gfanmarket.service.BannerClickCleanServiceImpl">  
+        <property name="clientEventLogDAO" ref="clientEventLogDAO"></property>
+        <property name="gfanClientEventBannerclickDAO" ref="gfanClientEventBannerclickDAO"></property>
+        <property name="commonService" ref="commonService"></property>
+    </bean>
+    
+    <bean id="bannerDownLoadCleanService" class="com.wangli.data.etl.report.gfanmarket.service.BannerDownLoadCleanServiceImpl">  
+        <property name="clientEventLogDAO" ref="clientEventLogDAO"></property>
+        <property name="gfanClientEventDownloadDAO" ref="gfanClientEventDownloadDAO"></property>
+        <property name="commonService" ref="commonService"></property>
+    </bean>
+    
+    <bean id="recommendClickCleanService" class="com.wangli.data.etl.report.gfanmarket.service.RecommendClickCleanServiceImpl">  
+        <property name="clientEventLogDAO" ref="clientEventLogDAO"></property>
+        <property name="gfanClientEventBannerclickDAO" ref="gfanClientEventBannerclickDAO"></property>
+        <property name="commonService" ref="commonService"></property>
+    </bean>
+    
+</beans>

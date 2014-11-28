@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    
+	<context:property-placeholder location="classpath:jdbc.properties" />
+	
+	<import resource="applicationContext-dao.xml"/>
+	<import resource="applicationContext-analysis.xml"/>
+	
+	<bean class="com.wangli.data.quartz.AnalysisJobObject">
+		<property name="jobName" value="jobName"></property>
+		<property name="jobGroup" value="jobGroup"></property>
+		<property name="triggerName" value="triggerName"></property>
+		<property name="triggerGroup" value="triggerGroup"></property>
+		<property name="triggerTime" value="30 43 11 * * ?"></property>
+		<property name="analysisGroup" ref="gfanMarketGroup"></property>
+	</bean>	
+	
+	<bean id="gfanMarketGroup" class="com.wangli.data.quartz.AnalysisGroup">
+		<property name="groupName" value="gfanmarket"></property>
+		<property name="datahandlers">
+			<list>
+				<ref bean="bannerClickHandler"/>
+				<ref bean="recommendClickHandler"/>
+				<ref bean="downLoadHandler"/>
+				<ref bean="gfanCallHandler"/>
+			</list>
+		</property>
+	</bean>	
+	
+	
+	
+</beans>

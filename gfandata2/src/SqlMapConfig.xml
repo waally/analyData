@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN" "http://www.ibatis.com/dtd/sql-map-config-2.dtd">   
+<sqlMapConfig>  
+	<settings cacheModelsEnabled="true" enhancementEnabled="true" lazyLoadingEnabled="true" maxRequests="32" maxSessions="10" maxTransactions="5" useStatementNamespaces="true" />
+    <sqlMap resource="com/wangli/data/etl/report/gfanmarket/sql/client_event_log_SqlMap.xml" />  
+    <sqlMap resource="com/wangli/data/etl/report/gfanmarket/sql/gfan_client_event_bannerclick_SqlMap.xml" />  
+    <sqlMap resource="com/wangli/data/etl/report/gfanmarket/sql/gfan_client_event_download_SqlMap.xml" />  
+    <sqlMap resource="com/wangli/data/etl/report/gfanmarket/sql/stat_version_SqlMap.xml" />  
+    <sqlMap resource="com/wangli/data/etl/report/gfanmarket/sql/gfan_cfg_rank_product_SqlMap.xml" />  
+    <sqlMap resource="com/wangli/data/etl/report/gfanmarket/sql/gfan_code_banner_SqlMap.xml" />  
+</sqlMapConfig>  
