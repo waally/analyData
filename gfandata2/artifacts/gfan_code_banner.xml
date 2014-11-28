@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ibatorConfiguration PUBLIC "-//Apache Software Foundation//DTD Apache iBATIS Ibator Configuration 1.0//EN" "http://ibatis.apache.org/dtd/ibator-config_1_0.dtd" >
+<ibatorConfiguration >
+  <classPathEntry location="D:\Workspaces\Workspaces3\adata\lib\mysql-connector-java-5.1.27.jar" />
+  <ibatorContext id="context1" >
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/gfan_stat" 
+    userId="root" password="tarena" />
+    <javaModelGenerator targetPackage="com.wangli.data.etl.report.gfanmarket.module" targetProject="gfandata2" />
+    <sqlMapGenerator targetPackage="com.wangli.data.etl.report.gfanmarket.sql" targetProject="gfandata2" />
+    <daoGenerator targetPackage="com.wangli.data.etl.report.gfanmarket.dao" targetProject="gfandata2" type="GENERIC-CI" />
+    <table schema="" tableName="gfan_code_banner">
+    </table>
+  </ibatorContext>
+</ibatorConfiguration>
