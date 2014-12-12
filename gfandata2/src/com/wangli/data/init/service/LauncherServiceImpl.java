@@ -37,10 +37,10 @@ public class LauncherServiceImpl implements LauncherService {
 	}
 	
 	public static void main(String[] args) {
-		Date date = DateUtil.getLastDate(-6);
+		Date date = DateUtil.getLastDate(-22);
 //		AnalysisGroup ag = LauncherService.instance.getAnalysisGroup("gfanmarket");
 //		ag.process(date);
-		DataHandler dh = LauncherService.instance.getAnalysisHandler("gfanmarket", "gfancall");
+		DataHandler dh = LauncherService.instance.getAnalysisHandler("gfanmarket", "bannerclick");
 		dh.setDate(date);
 		dh.processAnalysis();
 	}
