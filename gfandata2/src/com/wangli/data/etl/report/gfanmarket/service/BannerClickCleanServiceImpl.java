@@ -4,18 +4,19 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
+import com.wangli.data.etl.report.gfanmarket.constant.GfanMarketBehavior;
 import com.wangli.data.etl.report.gfanmarket.dao.ClientEventLogDAO;
-import com.wangli.data.etl.report.gfanmarket.dao.GfanClientEventBannerclickDAO;
+import com.wangli.data.etl.report.gfanmarket.dao.GfanClientEventClickDAO;
 import com.wangli.data.etl.report.gfanmarket.module.ClientEventLog;
 import com.wangli.data.etl.report.gfanmarket.module.ClientEventLogExample;
-import com.wangli.data.etl.report.gfanmarket.module.GfanClientEventBannerclick;
-import com.wangli.data.etl.report.gfanmarket.module.GfanClientEventBannerclickExample;
+import com.wangli.data.etl.report.gfanmarket.module.GfanClientEventClick;
+import com.wangli.data.etl.report.gfanmarket.module.GfanClientEventClickExample;
 
 public class BannerClickCleanServiceImpl implements BannerClickCleanService {
 
 	private ClientEventLogDAO clientEventLogDAO;
 	
-	private GfanClientEventBannerclickDAO gfanClientEventBannerclickDAO;
+	private GfanClientEventClickDAO gfanClientEventClickDAO;
 	
 	private CommonService commonService;
 	
@@ -27,10 +28,10 @@ public class BannerClickCleanServiceImpl implements BannerClickCleanService {
 	}
 
 	@Override
-	public void deleteRepeatDate(String dateTime) throws SQLException {
-		GfanClientEventBannerclickExample example = new GfanClientEventBannerclickExample();
-		example.createCriteria().andDataTimeEqualTo(dateTime).andBannerIdEqualTo(100000);
-		gfanClientEventBannerclickDAO.deleteByExample(example);
+	public void deleteRepeatDate(String dateTime,int behaviorId) throws SQLException {
+		GfanClientEventClickExample example = new GfanClientEventClickExample();
+		example.createCriteria().andDataTimeEqualTo(dateTime).andBehaviorIdEqualTo(behaviorId);
+		gfanClientEventClickDAO.deleteByExample(example);
 	}
 
 	@Override
@@ -41,9 +42,9 @@ public class BannerClickCleanServiceImpl implements BannerClickCleanService {
 	}
 
 	@Override
-	public void insertBannerClick(List<GfanClientEventBannerclick> list) throws SQLException {
-		for(GfanClientEventBannerclick record : list){
-			gfanClientEventBannerclickDAO.insert(record);
+	public void insertBannerClick(List<GfanClientEventClick> list) throws SQLException {
+		for(GfanClientEventClick record : list){
+			gfanClientEventClickDAO.insert(record);
 		}
 	}
 
@@ -55,13 +56,13 @@ public class BannerClickCleanServiceImpl implements BannerClickCleanService {
 		this.clientEventLogDAO = clientEventLogDAO;
 	}
 
-	public GfanClientEventBannerclickDAO getGfanClientEventBannerclickDAO() {
-		return gfanClientEventBannerclickDAO;
+	public GfanClientEventClickDAO getGfanClientEventClickDAO() {
+		return gfanClientEventClickDAO;
 	}
 
-	public void setGfanClientEventBannerclickDAO(
-			GfanClientEventBannerclickDAO gfanClientEventBannerclickDAO) {
-		this.gfanClientEventBannerclickDAO = gfanClientEventBannerclickDAO;
+	public void setGfanClientEventClickDAO(
+			GfanClientEventClickDAO gfanClientEventClickDAO) {
+		this.gfanClientEventClickDAO = gfanClientEventClickDAO;
 	}
 
 	public CommonService getCommonService() {
@@ -73,11 +74,8 @@ public class BannerClickCleanServiceImpl implements BannerClickCleanService {
 	}
 
 	@Override
-	public GfanClientEventBannerclick checkBannerId(GfanClientEventBannerclick banner, Date date) throws SQLException {
-		if(commonService.isRecommend(banner.getPid(), 0, date)){
-			return banner;
-		}
-		return null;
+	public Integer checkBannerId(String productId,GfanMarketBehavior behavior,Date date) throws SQLException {
+		return commonService.isBehavior(productId,behavior, date);
 	}
 	
 }

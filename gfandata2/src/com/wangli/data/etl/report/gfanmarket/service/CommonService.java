@@ -3,6 +3,9 @@ package com.wangli.data.etl.report.gfanmarket.service;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+
+import com.wangli.data.etl.report.gfanmarket.constant.GfanMarketBehavior;
 
 public interface CommonService {
 
@@ -20,5 +23,10 @@ public interface CommonService {
 	 * @return
 	 * @throws SQLException
 	 */
-	boolean isRecommend(String productId,int page,Date date) throws SQLException;
+	Integer isBehavior(String productId,GfanMarketBehavior type,Date date) throws SQLException;
+	/**
+	 * 生成热词
+	 */
+	void generateHotWords() throws SQLException;
+	
 }

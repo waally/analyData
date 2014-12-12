@@ -4,9 +4,9 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
+import com.wangli.data.etl.report.gfanmarket.constant.GfanMarketBehavior;
 import com.wangli.data.etl.report.gfanmarket.module.ClientEventLog;
-import com.wangli.data.etl.report.gfanmarket.module.GfanClientEventBannerclick;
-import com.wangli.data.etl.report.gfanmarket.module.GfanClientEventDownload;
+import com.wangli.data.etl.report.gfanmarket.module.GfanClientEventClick;
 
 public interface BannerClickCleanService {
 
@@ -22,7 +22,7 @@ public interface BannerClickCleanService {
 	 * @param dateTime
 	 * @throws SQLException
 	 */
-	void deleteRepeatDate(String dateTime) throws SQLException;
+	void deleteRepeatDate(String dateTime,int behaviorId) throws SQLException;
 	/**
 	 * 用于分批获取部分数据
 	 * @param dateTime
@@ -37,7 +37,7 @@ public interface BannerClickCleanService {
 	 * @param list
 	 * @throws SQLException
 	 */
-	void insertBannerClick(List<GfanClientEventBannerclick> list) throws SQLException;
+	void insertBannerClick(List<GfanClientEventClick> list) throws SQLException;
 	/**
 	 * 检查数据
 	 * @param downLoad
@@ -45,5 +45,5 @@ public interface BannerClickCleanService {
 	 * @return
 	 * @throws SQLException
 	 */
-	GfanClientEventBannerclick checkBannerId(GfanClientEventBannerclick downLoad,Date date) throws SQLException;
+	Integer checkBannerId(String productId,GfanMarketBehavior behavior,Date date) throws SQLException;
 }

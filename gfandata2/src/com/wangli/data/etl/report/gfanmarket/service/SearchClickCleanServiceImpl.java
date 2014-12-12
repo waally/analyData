@@ -12,7 +12,7 @@ import com.wangli.data.etl.report.gfanmarket.module.ClientEventLogExample;
 import com.wangli.data.etl.report.gfanmarket.module.GfanClientEventClick;
 import com.wangli.data.etl.report.gfanmarket.module.GfanClientEventClickExample;
 
-public class RecommendClickCleanServiceImpl implements RecommendClickCleanService {
+public class SearchClickCleanServiceImpl implements SearchClickCleanService {
 
 	private ClientEventLogDAO clientEventLogDAO;
 	
@@ -23,14 +23,14 @@ public class RecommendClickCleanServiceImpl implements RecommendClickCleanServic
 	@Override
 	public int getCount(String dateTime) throws SQLException {
 		ClientEventLogExample example = new ClientEventLogExample();
-		example.createCriteria().andVersionEqualTo("2").andDataTimeEqualTo(dateTime).andEventIdEqualTo("2101").andClientVersionIn(commonService.getStatisticsVersion());
+		example.createCriteria().andVersionEqualTo("2").andDataTimeEqualTo(dateTime).andEventIdEqualTo("2803").andClientVersionIn(commonService.getStatisticsVersion());
 		return clientEventLogDAO.countByExample(example);
 	}
 
 	@Override
-	public void deleteRepeatDate(String dateTime,int behaviorId) throws SQLException {
+	public void deleteRepeatDate(String dateTime, int behaviorId) throws SQLException {
 		GfanClientEventClickExample example = new GfanClientEventClickExample();
-		example.createCriteria().andDataTimeEqualTo(dateTime).andBehaviorIdNotEqualTo(behaviorId);
+		example.createCriteria().andDataTimeEqualTo(dateTime).andBehaviorIdEqualTo(behaviorId);
 		gfanClientEventClickDAO.deleteByExample(example);
 	}
 
@@ -38,19 +38,20 @@ public class RecommendClickCleanServiceImpl implements RecommendClickCleanServic
 	public List<ClientEventLog> getEventList(String dateTime, int start,
 			int length) throws SQLException {
 		ClientEventLogExample example = new ClientEventLogExample();
-		example.createCriteria().andVersionEqualTo("2").andDataTimeEqualTo(dateTime).andEventIdEqualTo("2101").andClientVersionIn(commonService.getStatisticsVersion());
+		example.createCriteria().andVersionEqualTo("2").andDataTimeEqualTo(dateTime).andEventIdEqualTo("2803").andClientVersionIn(commonService.getStatisticsVersion());
 		return clientEventLogDAO.selectByExampleWithBLOBs(example, start, length);
 	}
 
 	@Override
-	public void insertBannerClick(List<GfanClientEventClick> list)throws SQLException {
+	public void insertBannerClick(List<GfanClientEventClick> list)
+			throws SQLException {
 		for(GfanClientEventClick record : list){
 			gfanClientEventClickDAO.insert(record);
 		}
 	}
 
 	@Override
-	public Integer checkBannerId(String productId,GfanMarketBehavior behavior,Date date) throws SQLException{
+	public Integer checkBannerId(String productId, GfanMarketBehavior behavior,Date date) throws SQLException {
 		return commonService.isBehavior(productId,behavior, date);
 	}
 

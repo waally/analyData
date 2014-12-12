@@ -8,7 +8,7 @@ import com.wangli.data.etl.report.gfanmarket.constant.GfanMarketBehavior;
 import com.wangli.data.etl.report.gfanmarket.module.ClientEventLog;
 import com.wangli.data.etl.report.gfanmarket.module.GfanClientEventClick;
 
-public interface RecommendClickCleanService {
+public interface SearchClickCleanService {
 
 	/**
 	 * 获取总数
@@ -39,7 +39,7 @@ public interface RecommendClickCleanService {
 	 */
 	void insertBannerClick(List<GfanClientEventClick> list) throws SQLException;
 	/**
-	 * 检查数据，并添加behaviorId
+	 * 检查数据
 	 * @param downLoad
 	 * @param date
 	 * @return
