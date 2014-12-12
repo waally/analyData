@@ -31,15 +31,38 @@
         <property name="recommendClickCleanService" ref="recommendClickCleanService"></property>
     </bean>
     
+    <bean id="searchClickCleanHandler" class="com.wangli.data.etl.report.gfanmarket.impl.SearchClickCleanHandler">  
+        <property name="name" value="searchclick"></property>
+        <property name="searchClickCleanService" ref="searchClickCleanService"></property>
+    </bean>
+    
+    <bean id="recommendDataHandler" class="com.wangli.data.etl.report.gfanmarket.RecommendMiddleDataHandler">  
+        <property name="name" value="recommenddata"></property>
+        <property name="commonService" ref="commonService"></property>
+        <property name="transformService" ref="transformService"></property>
+    </bean>
+    
 	<bean id="commonService" class="com.wangli.data.etl.report.gfanmarket.service.CommonServiceImpl">  
         <property name="statVersionDAO" ref="statVersionDAO"></property>
         <property name="gfanCfgRankProductDAO" ref="gfanCfgRankProductDAO"></property>
         <property name="gfanCodeBannerDAO" ref="gfanCodeBannerDAO"></property>
+        <property name="gfanCfgContentGroupDAO" ref="gfanCfgContentGroupDAO"></property>
+        <property name="gfanCfgContentDAO" ref="gfanCfgContentDAO"></property>
+        <property name="searchHotwordsLogDAO" ref="searchHotwordsLogDAO"></property>
+    </bean>
+    
+    <bean id="transformService" class="com.wangli.data.etl.report.gfanmarket.service.TransformServiceImpl">  
+        <property name="dataSources">
+			<map>
+				<entry key="stat" value-ref="dataSource"></entry>
+				<entry key="am" value-ref="dataSourceAm"></entry>
+			</map>
+		</property>
     </bean>
     
 	<bean id="bannerClickCleanService" class="com.wangli.data.etl.report.gfanmarket.service.BannerClickCleanServiceImpl">  
         <property name="clientEventLogDAO" ref="clientEventLogDAO"></property>
-        <property name="gfanClientEventBannerclickDAO" ref="gfanClientEventBannerclickDAO"></property>
+        <property name="gfanClientEventClickDAO" ref="gfanClientEventClickDAO"></property>
         <property name="commonService" ref="commonService"></property>
     </bean>
     
@@ -51,7 +74,13 @@
     
     <bean id="recommendClickCleanService" class="com.wangli.data.etl.report.gfanmarket.service.RecommendClickCleanServiceImpl">  
         <property name="clientEventLogDAO" ref="clientEventLogDAO"></property>
-        <property name="gfanClientEventBannerclickDAO" ref="gfanClientEventBannerclickDAO"></property>
+        <property name="gfanClientEventClickDAO" ref="gfanClientEventClickDAO"></property>
+        <property name="commonService" ref="commonService"></property>
+    </bean>
+    
+    <bean id="searchClickCleanService" class=" com.wangli.data.etl.report.gfanmarket.service.SearchClickCleanServiceImpl">  
+        <property name="clientEventLogDAO" ref="clientEventLogDAO"></property>
+        <property name="gfanClientEventClickDAO" ref="gfanClientEventClickDAO"></property>
         <property name="commonService" ref="commonService"></property>
     </bean>
     

@@ -19,6 +19,20 @@
 		<property name="maxIdleTime" value="${c3p0.maxIdleTime}"></property>
 	</bean>	
 	
+	<bean id="dataSourceAm" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="user" value="${jdbc.user.query.am}"></property>
+		<property name="password" value="${jdbc.password.query.am}"></property>
+		<property name="jdbcUrl" value="${jdbc.url.query.am}"></property>
+		<property name="driverClass" value="${jdbc.driverClass.query}"></property>
+		<property name="minPoolSize" value="${c3p0.minPoolSize}"></property>
+		<property name="initialPoolSize" value="${c3p0.initialPoolSize}"></property>
+		<property name="maxPoolSize" value="${c3p0.maxPoolSize}"></property>
+		<property name="acquireIncrement" value="${c3p0.acquireIncrement}"></property>
+		<property name="maxStatements" value="${c3p0.maxStatements}"></property>
+		<property name="maxStatementsPerConnection" value="${c3p0.maxStatementsPerConnection}"></property>
+		<property name="maxIdleTime" value="${c3p0.maxIdleTime}"></property>
+	</bean>	
+	
 	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">  
         <property name="configLocation">  <!-- name 为configLocation不可为其他 -->  
             <value>classpath:SqlMapConfig.xml</value> <!-- 不区分大小写，路径前可加'/' -->  
@@ -31,7 +45,7 @@
 	<bean id="clientEventLogDAO" class="com.wangli.data.etl.report.gfanmarket.dao.ClientEventLogDAOImpl">
 		<constructor-arg ref="sqlMapClient"/>
 	</bean>
-	<bean id="gfanClientEventBannerclickDAO" class="com.wangli.data.etl.report.gfanmarket.dao.GfanClientEventBannerclickDAOImpl">
+	<bean id="gfanClientEventClickDAO" class="com.wangli.data.etl.report.gfanmarket.dao.GfanClientEventClickDAOImpl">
 		<constructor-arg ref="sqlMapClient"/>
 	</bean>
 	<bean id="gfanClientEventDownloadDAO" class="com.wangli.data.etl.report.gfanmarket.dao.GfanClientEventDownloadDAOImpl">
@@ -44,6 +58,16 @@
 		<constructor-arg ref="sqlMapClient"/>
 	</bean>
 	<bean id="gfanCodeBannerDAO" class="com.wangli.data.etl.report.gfanmarket.dao.GfanCodeBannerDAOImpl">
+		<constructor-arg ref="sqlMapClient"/>
+	</bean>
+	
+	<bean id="gfanCfgContentDAO" class="com.wangli.data.etl.report.gfanmarket.dao.GfanCfgContentDAOImpl">
+		<constructor-arg ref="sqlMapClient"/>
+	</bean>
+	<bean id="gfanCfgContentGroupDAO" class="com.wangli.data.etl.report.gfanmarket.dao.GfanCfgContentGroupDAOImpl">
+		<constructor-arg ref="sqlMapClient"/>
+	</bean>
+	<bean id="searchHotwordsLogDAO" class="com.wangli.data.etl.report.gfanmarket.dao.SearchHotwordsLogDAOImpl">
 		<constructor-arg ref="sqlMapClient"/>
 	</bean>
 	

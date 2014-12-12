@@ -26,9 +26,11 @@
 		<property name="groupName" value="gfanmarket"></property>
 		<property name="datahandlers">
 			<list>
+				<ref bean="recommendDataHandler"/>
 				<ref bean="bannerClickHandler"/>
 				<ref bean="recommendClickHandler"/>
 				<ref bean="downLoadHandler"/>
+				<ref bean="searchClickCleanHandler"/>
 				<ref bean="gfanCallHandler"/>
 			</list>
 		</property>

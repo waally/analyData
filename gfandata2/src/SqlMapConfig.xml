@@ -3,9 +3,12 @@
 <sqlMapConfig>  
 	<settings cacheModelsEnabled="true" enhancementEnabled="true" lazyLoadingEnabled="true" maxRequests="32" maxSessions="10" maxTransactions="5" useStatementNamespaces="true" />
     <sqlMap resource="com/wangli/data/etl/report/gfanmarket/sql/client_event_log_SqlMap.xml" />  
-    <sqlMap resource="com/wangli/data/etl/report/gfanmarket/sql/gfan_client_event_bannerclick_SqlMap.xml" />  
+    <sqlMap resource="com/wangli/data/etl/report/gfanmarket/sql/gfan_client_event_click_SqlMap.xml" />  
     <sqlMap resource="com/wangli/data/etl/report/gfanmarket/sql/gfan_client_event_download_SqlMap.xml" />  
     <sqlMap resource="com/wangli/data/etl/report/gfanmarket/sql/stat_version_SqlMap.xml" />  
     <sqlMap resource="com/wangli/data/etl/report/gfanmarket/sql/gfan_cfg_rank_product_SqlMap.xml" />  
-    <sqlMap resource="com/wangli/data/etl/report/gfanmarket/sql/gfan_code_banner_SqlMap.xml" />  
+    <sqlMap resource="com/wangli/data/etl/report/gfanmarket/sql/gfan_code_banner_SqlMap.xml" />
+    <sqlMap resource="com/wangli/data/etl/report/gfanmarket/sql/gfan_cfg_content_SqlMap.xml" />
+    <sqlMap resource="com/wangli/data/etl/report/gfanmarket/sql/gfan_cfg_content_group_SqlMap.xml" />
+    <sqlMap resource="com/wangli/data/etl/report/gfanmarket/sql/search_hotwords_log_SqlMap.xml" />  
 </sqlMapConfig>  
