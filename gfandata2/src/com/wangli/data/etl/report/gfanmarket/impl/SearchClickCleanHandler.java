@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -19,49 +18,36 @@ import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.wangli.data.etl.report.gfanmarket.RecommendCleanHandler;
 import com.wangli.data.etl.report.gfanmarket.constant.ClickEventSource;
 import com.wangli.data.etl.report.gfanmarket.constant.GfanMarketBehavior;
 import com.wangli.data.etl.report.gfanmarket.module.ClientEventLog;
 import com.wangli.data.etl.report.gfanmarket.module.GfanClientEventClick;
-import com.wangli.data.etl.report.gfanmarket.service.RecommendClickCleanService;
+import com.wangli.data.etl.report.gfanmarket.service.SearchClickCleanService;
 import com.wangli.data.util.DateUtil;
 
-public class RecommendClickCleanHandler extends RecommendCleanHandler{
+public class SearchClickCleanHandler extends RecommendCleanHandler{
 
-	private RecommendClickCleanService recommendClickCleanService;
+	private SearchClickCleanService searchClickCleanService;
 	
 	private String name;
 	
 	private Map<String,GfanMarketBehavior> behaviors;
 	
-	private RecommendClickCleanHandler() {
+	private SearchClickCleanHandler() {
 		behaviors = new HashMap<String,GfanMarketBehavior>();
-		behaviors.put(ClickEventSource.RECOMMENDAPP.getEventSource(), ClickEventSource.RECOMMENDAPP.getBehavior());
-		behaviors.put(ClickEventSource.RECOMMENDBOUTIQUE.getEventSource(), ClickEventSource.RECOMMENDBOUTIQUE.getBehavior());
-		behaviors.put(ClickEventSource.RECOMMENDGAME.getEventSource(), ClickEventSource.RECOMMENDGAME.getBehavior());
-		behaviors.put(ClickEventSource.RECOMMENDHOT.getEventSource(), ClickEventSource.RECOMMENDHOT.getBehavior());
-		behaviors.put(ClickEventSource.RECOMMENDNEW.getEventSource(), ClickEventSource.RECOMMENDNEW.getBehavior());
-		behaviors.put(ClickEventSource.OPERATEABB.getEventSource(), ClickEventSource.OPERATEABB.getBehavior());
-		behaviors.put(ClickEventSource.OPERATEAC.getEventSource(), ClickEventSource.OPERATEAC.getBehavior());
-		behaviors.put(ClickEventSource.OPERATEAR.getEventSource(), ClickEventSource.OPERATEAR.getBehavior());
-		behaviors.put(ClickEventSource.OPERATEGC.getEventSource(), ClickEventSource.OPERATEGC.getBehavior());
-		behaviors.put(ClickEventSource.OPERATEGL.getEventSource(), ClickEventSource.OPERATEGL.getBehavior());
-		behaviors.put(ClickEventSource.OPERATEGR.getEventSource(), ClickEventSource.OPERATEGR.getBehavior());
-		behaviors.put(ClickEventSource.OPERATENECESSARY.getEventSource(), ClickEventSource.OPERATENECESSARY.getBehavior());
+		behaviors.put(ClickEventSource.SEARCHTITLE.getEventSource(), ClickEventSource.SEARCHTITLE.getBehavior());
 	}
 
 	@Override
 	protected int getCount() throws SQLException {
-		return recommendClickCleanService.getCount(DateUtil.getFormDate(getDate()));
+		return searchClickCleanService.getCount(DateUtil.getFormDate(getDate()));
 	}
 
 	@Override
 	protected void deleteAll() throws SQLException {
 		for(GfanMarketBehavior behavior:behaviors.values()){
-			recommendClickCleanService.deleteRepeatDate(DateUtil.getFormDate(getDate()),behavior.getBehaviorId());
+			searchClickCleanService.deleteRepeatDate(DateUtil.getFormDate(getDate()),behavior.getBehaviorId());
 		}
 	}
 
@@ -69,18 +55,16 @@ public class RecommendClickCleanHandler extends RecommendCleanHandler{
 	protected void handleOnce(int startIndex, int maxlength2) throws ParserConfigurationException, SAXException, IOException, SQLException {
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dbBuilder = dbFactory.newDocumentBuilder();
-		List<ClientEventLog> list = recommendClickCleanService.getEventList(DateUtil.getFormDate(getDate()),startIndex, maxlength2);
+		List<ClientEventLog> list = searchClickCleanService.getEventList(DateUtil.getFormDate(getDate()),startIndex, maxlength2);
 		List<GfanClientEventClick> banners = new ArrayList<GfanClientEventClick>();
 		for(ClientEventLog event : list){
 			event = parseEventLog(event, dbBuilder);
-			if(event!=null){
-				GfanClientEventClick banner = transformToBannerClick(event);
-				if(banner!=null){
-					banners.add(banner);
-				}
+			GfanClientEventClick banner = transformToBannerClick(event);
+			if(banner!=null){
+				banners.add(banner);
 			}
 		}
-		recommendClickCleanService.insertBannerClick(banners);
+		searchClickCleanService.insertBannerClick(banners);
 	}
 	
 	/**
@@ -97,24 +81,10 @@ public class RecommendClickCleanHandler extends RecommendCleanHandler{
 		InputSource is = new InputSource(sr);
 		Document doc = dbBuilder.parse(is);
 		Node nValue = doc.getElementsByTagName("value").item(0);
-		try {
-			Gson gson = new Gson();
-			Map<String,Object> arg = gson.fromJson(nValue.getTextContent(), new TypeToken<Map<String,String>>(){}.getType());
-			event.setArgMap(arg);
-			if(event.getArgMap()!=null){
-				return event;
-			}
-		} catch (Exception e) {
-			if(nValue.getTextContent().matches("^\\d+$")){
-				Map<String,Object> arg = new HashMap<String,Object>();
-				arg.put("pid", nValue.getTextContent());
-				arg.put("path", event.getEventSource());
-				event.setArgMap(arg);
-				return event;
-			}
-		}
-		
-		return null;
+		Map<String,Object> arg = new HashMap<String,Object>();
+		arg.put("id", nValue.getTextContent());
+		event.setArgMap(arg);
+		return event;
 	}
 
 	/**
@@ -126,8 +96,8 @@ public class RecommendClickCleanHandler extends RecommendCleanHandler{
 	private GfanClientEventClick transformToBannerClick(ClientEventLog event) throws SQLException{
 		GfanMarketBehavior behavior = behaviors.get(event.getEventSource());
 		if(behavior!=null){
-			if(event.getArgMap()!=null&&event.getArgMap().get("pid")!=null){
-				Integer pid = recommendClickCleanService.checkBannerId((String)event.getArgMap().get("pid"), behavior, getDate());
+			if(event.getArgMap()!=null&&event.getArgMap().get("id")!=null){
+				Integer pid = searchClickCleanService.checkBannerId((String)event.getArgMap().get("id"), behavior, getDate());
 				if(pid!=null){
 					GfanClientEventClick banner = new GfanClientEventClick();
 					banner.setArgs(event.getArgs());
@@ -151,12 +121,13 @@ public class RecommendClickCleanHandler extends RecommendCleanHandler{
 		return null;
 	}
 
-	public RecommendClickCleanService getRecommendClickCleanService() {
-		return recommendClickCleanService;
+	public SearchClickCleanService getSearchClickCleanService() {
+		return searchClickCleanService;
 	}
 
-	public void setRecommendClickCleanService(RecommendClickCleanService recommendClickCleanService) {
-		this.recommendClickCleanService = recommendClickCleanService;
+	public void setSearchClickCleanService(
+			SearchClickCleanService searchClickCleanService) {
+		this.searchClickCleanService = searchClickCleanService;
 	}
 
 	@Override

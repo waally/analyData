@@ -6,8 +6,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.SortedMap;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -21,6 +26,7 @@ import org.xml.sax.SAXException;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.wangli.data.etl.report.gfanmarket.RecommendCleanHandler;
+import com.wangli.data.etl.report.gfanmarket.constant.DownLoadEventPath;
 import com.wangli.data.etl.report.gfanmarket.module.ClientEventLog;
 import com.wangli.data.etl.report.gfanmarket.module.GfanClientEventDownload;
 import com.wangli.data.etl.report.gfanmarket.service.BannerDownLoadCleanService;
@@ -32,6 +38,28 @@ public class BannerDownLoadCleanHandler extends RecommendCleanHandler{
 	
 	private String name;
 	
+	private List<DownLoadEventPath> eventPaths;
+	
+	private BannerDownLoadCleanHandler() {
+		eventPaths = new ArrayList<DownLoadEventPath>();
+		eventPaths.add(DownLoadEventPath.BANNERBOUTIQUE);
+		eventPaths.add(DownLoadEventPath.BANNERHOT);
+		eventPaths.add(DownLoadEventPath.BANNERNEW);
+		eventPaths.add(DownLoadEventPath.BANNERBOOK);
+		eventPaths.add(DownLoadEventPath.RECOMMENDHOT);
+		eventPaths.add(DownLoadEventPath.RECOMMENDNEW);
+		eventPaths.add(DownLoadEventPath.RECOMMENDBOUTIQUE);
+		eventPaths.add(DownLoadEventPath.RECOMMENDAPP);
+		eventPaths.add(DownLoadEventPath.RECOMMENDGAME);
+		eventPaths.add(DownLoadEventPath.OPERATEABB);
+		eventPaths.add(DownLoadEventPath.OPERATEAC);
+		eventPaths.add(DownLoadEventPath.OPERATEAR);
+		eventPaths.add(DownLoadEventPath.OPERATEGC);
+		eventPaths.add(DownLoadEventPath.OPERATEGL);
+		eventPaths.add(DownLoadEventPath.OPERATEGR);
+		eventPaths.add(DownLoadEventPath.OPERATENECESSARY);
+	}
+
 	@Override
 	protected int getCount() throws SQLException {
 		return bannerDownLoadCleanService.getCount(DateUtil.getFormDate(getDate()));
@@ -39,7 +67,9 @@ public class BannerDownLoadCleanHandler extends RecommendCleanHandler{
 
 	@Override
 	protected void deleteAll() throws SQLException {
-		bannerDownLoadCleanService.deleteRepeatDate(DateUtil.getFormDate(getDate()));
+		for(DownLoadEventPath eventPath : eventPaths){
+			bannerDownLoadCleanService.deleteRepeatDate(DateUtil.getFormDate(getDate()),eventPath.getBehavior().getBehaviorId());
+		}
 	}
 
 	@Override
@@ -100,22 +130,31 @@ public class BannerDownLoadCleanHandler extends RecommendCleanHandler{
 	 * @throws SQLException
 	 */
 	private GfanClientEventDownload transformToBannerClick(ClientEventLog event) throws SQLException{
-		GfanClientEventDownload banner = new GfanClientEventDownload();
-		banner.setArgs(event.getArgs());
-		banner.setCid(event.getCid());
-		banner.setClientId(event.getClientId());
-		banner.setClientName(event.getClientName());
-		banner.setClientVersion(event.getClientVersion());
-		banner.setDataTime(event.getDataTime());
-		banner.setEventId(event.getEventId());
-		banner.setEventSource(event.getEventSource());
-		banner.setEventValue(event.getEventValue());
-		banner.setImei(event.getImei());
-		banner.setInsertTime(new Date());
-		banner.setLogtime(event.getInsertTime());
-		banner.setPid((String)event.getArgMap().get("pid"));
-		banner.setPath((String)event.getArgMap().get("path"));
-		return bannerDownLoadCleanService.markBehaviorId(banner, getDate());
+		for(DownLoadEventPath filter :eventPaths){
+			if(((String)event.getArgMap().get("path")).matches(filter.getPath())){
+				Integer pid = bannerDownLoadCleanService.checkBannerId((String)event.getArgMap().get("pid"), filter.getBehavior(), getDate());
+				if(pid!=null){
+					GfanClientEventDownload download = new GfanClientEventDownload();
+					download.setArgs(event.getArgs());
+					download.setCid(event.getCid());
+					download.setClientId(event.getClientId());
+					download.setClientName(event.getClientName());
+					download.setClientVersion(event.getClientVersion());
+					download.setDataTime(event.getDataTime());
+					download.setEventId(event.getEventId());
+					download.setEventSource(event.getEventSource());
+					download.setEventValue(event.getEventValue());
+					download.setImei(event.getImei());
+					download.setInsertTime(new Date());
+					download.setLogtime(event.getInsertTime());
+					download.setPid(Integer.toString(pid));
+					download.setPath((String)event.getArgMap().get("path"));
+					download.setBehaviorId(filter.getBehavior().getBehaviorId());
+					return download;
+				}
+			}
+		}
+		return null;
 	}
 
 	public BannerDownLoadCleanService getBannerDownLoadCleanService() {

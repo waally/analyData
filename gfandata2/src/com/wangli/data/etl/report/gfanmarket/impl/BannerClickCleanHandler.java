@@ -5,6 +5,7 @@ import java.io.StringReader;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,8 +21,10 @@ import org.xml.sax.SAXException;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.wangli.data.etl.report.gfanmarket.RecommendCleanHandler;
+import com.wangli.data.etl.report.gfanmarket.constant.ClickEventSource;
+import com.wangli.data.etl.report.gfanmarket.constant.GfanMarketBehavior;
 import com.wangli.data.etl.report.gfanmarket.module.ClientEventLog;
-import com.wangli.data.etl.report.gfanmarket.module.GfanClientEventBannerclick;
+import com.wangli.data.etl.report.gfanmarket.module.GfanClientEventClick;
 import com.wangli.data.etl.report.gfanmarket.service.BannerClickCleanService;
 import com.wangli.data.util.DateUtil;
 
@@ -31,6 +34,18 @@ public class BannerClickCleanHandler extends RecommendCleanHandler{
 	
 	private String name;
 	
+	private Map<String,GfanMarketBehavior> behaviors;
+	
+	
+	
+	private BannerClickCleanHandler() {
+		behaviors = new HashMap<String,GfanMarketBehavior>();
+		behaviors.put(ClickEventSource.BANNERBOUTIQUE.getEventSource(), ClickEventSource.BANNERBOUTIQUE.getBehavior());
+		behaviors.put(ClickEventSource.BANNERHOT.getEventSource(), ClickEventSource.BANNERHOT.getBehavior());
+		behaviors.put(ClickEventSource.BANNERNEW.getEventSource(), ClickEventSource.BANNERNEW.getBehavior());
+		behaviors.put(ClickEventSource.BANNERBOOK.getEventSource(), ClickEventSource.BANNERBOOK.getBehavior());
+	}
+
 	@Override
 	protected int getCount() throws SQLException {
 		return bannerClickCleanService.getCount(DateUtil.getFormDate(getDate()));
@@ -38,7 +53,9 @@ public class BannerClickCleanHandler extends RecommendCleanHandler{
 
 	@Override
 	protected void deleteAll() throws SQLException {
-		bannerClickCleanService.deleteRepeatDate(DateUtil.getFormDate(getDate()));
+		for(GfanMarketBehavior behavior:behaviors.values()){
+			bannerClickCleanService.deleteRepeatDate(DateUtil.getFormDate(getDate()),behavior.getBehaviorId());
+		}
 	}
 
 	@Override
@@ -46,10 +63,10 @@ public class BannerClickCleanHandler extends RecommendCleanHandler{
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dbBuilder = dbFactory.newDocumentBuilder();
 		List<ClientEventLog> list = bannerClickCleanService.getEventList(DateUtil.getFormDate(getDate()),startIndex, maxlength2);
-		List<GfanClientEventBannerclick> banners = new ArrayList<GfanClientEventBannerclick>();
+		List<GfanClientEventClick> banners = new ArrayList<GfanClientEventClick>();
 		for(ClientEventLog event : list){
 			event = parseEventLog(event, dbBuilder);
-			GfanClientEventBannerclick banner = transformToBannerClick(event);
+			GfanClientEventClick banner = transformToBannerClick(event);
 			if(banner!=null){
 				banners.add(banner);
 			}
@@ -83,26 +100,30 @@ public class BannerClickCleanHandler extends RecommendCleanHandler{
 	 * @return
 	 * @throws SQLException
 	 */
-	private GfanClientEventBannerclick transformToBannerClick(ClientEventLog event) throws SQLException{
-		if(event.getEventSource().equals("1002")||event.getEventSource().equals("1003")||event.getEventSource().equals("1004")||event.getEventSource().equals("14001")){
-			GfanClientEventBannerclick banner = new GfanClientEventBannerclick();
-			banner.setArgs(event.getArgs());
-			banner.setBannerId(Integer.parseInt((String)event.getArgMap().get("bannerid")));
-			banner.setBannerType((String)event.getArgMap().get("type"));
-			banner.setBehaviorId(100000);
-			banner.setCid(event.getCid());
-			banner.setClientId(event.getClientId());
-			banner.setClientName(event.getClientName());
-			banner.setClientVersion(event.getClientVersion());
-			banner.setDataTime(event.getDataTime());
-			banner.setEventId(event.getEventId());
-			banner.setEventSource(event.getEventSource());
-			banner.setEventValue(event.getEventValue());
-			banner.setImei(event.getImei());
-			banner.setInsertTime(new Date());
-			banner.setLogtime(event.getInsertTime());
-			banner.setPid((String)event.getArgMap().get("id"));
-			return bannerClickCleanService.checkBannerId(banner, getDate());
+	private GfanClientEventClick transformToBannerClick(ClientEventLog event) throws SQLException{
+		GfanMarketBehavior behavior = behaviors.get(event.getEventSource());
+		if(behavior!=null){
+			if(event.getArgMap()!=null&&event.getArgMap().get("id")!=null){
+				Integer pid = bannerClickCleanService.checkBannerId((String)event.getArgMap().get("id"), behavior, getDate());
+				if(pid!=null){
+					GfanClientEventClick banner = new GfanClientEventClick();
+					banner.setArgs(event.getArgs());
+					banner.setCid(event.getCid());
+					banner.setClientId(event.getClientId());
+					banner.setClientName(event.getClientName());
+					banner.setClientVersion(event.getClientVersion());
+					banner.setDataTime(event.getDataTime());
+					banner.setEventId(event.getEventId());
+					banner.setEventSource(event.getEventSource());
+					banner.setEventValue(event.getEventValue());
+					banner.setImei(event.getImei());
+					banner.setInsertTime(new Date());
+					banner.setLogtime(event.getInsertTime());
+					banner.setPid(Integer.toString(pid));
+					banner.setBehaviorId(behavior.getBehaviorId());
+					return banner;
+				}
+			}
 		}
 		return null;
 	}
