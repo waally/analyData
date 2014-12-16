@@ -109,6 +109,9 @@ public class CommonServiceImpl implements CommonService {
 			List<GfanCfgContent> contents = gfanCfgContentDAO.selectByExample(example2);
 			for(GfanCfgContent content : contents){
 				set.put(content.getContentId(), content.getId());
+				if(content.getContentIdExtra()!=null&&!content.getContentIdExtra().equals("")){
+					set.put(content.getContentIdExtra(), content.getId());
+				}
 			}
 			if(set.size()>=60){
 				return set;
@@ -128,6 +131,9 @@ public class CommonServiceImpl implements CommonService {
 			List<GfanCfgContent> contents = gfanCfgContentDAO.selectByExample(example2);
 			for(GfanCfgContent content : contents){
 				set.put(content.getContentId(), content.getId());
+				if(content.getContentIdExtra()!=null&&!content.getContentIdExtra().equals("")){
+					set.put(content.getContentIdExtra(), content.getId());
+				}
 			}
 		}
 		return set;
