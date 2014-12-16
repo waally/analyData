@@ -30,7 +30,7 @@ public class RecommendClickCleanServiceImpl implements RecommendClickCleanServic
 	@Override
 	public void deleteRepeatDate(String dateTime,int behaviorId) throws SQLException {
 		GfanClientEventClickExample example = new GfanClientEventClickExample();
-		example.createCriteria().andDataTimeEqualTo(dateTime).andBehaviorIdNotEqualTo(behaviorId);
+		example.createCriteria().andDataTimeEqualTo(dateTime).andBehaviorIdEqualTo(behaviorId);
 		gfanClientEventClickDAO.deleteByExample(example);
 	}
 
