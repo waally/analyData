@@ -26,11 +26,17 @@ public class RecommendMiddleDataHandler implements DataHandler{
 	public void processAnalysis() {
 		logger.info("Handler:etl.report.gfanmarket handler date:"+date);
 		try {
+			logger.info("Handler:etl.report.gfanmarket etl p_hotwords date:"+date+" begin");
 			transformService.transformData("am", "stat", "p_hotwords", 4);
+			logger.info("Handler:etl.report.gfanmarket etl p_keyword_shielding date:"+date+" begin");
 			transformService.transformData("am", "stat", "p_keyword_shielding", 9);
+			logger.info("Handler:etl.report.gfanmarket etl p_hotwords_search date:"+date+" begin");
 			transformService.transformData("am", "stat", "p_hotwords_search", 7);
+			logger.info("Handler:etl.report.gfanmarket etl gfan_cfg_content_group date:"+date+" begin");
 			transformService.transformData("am", "stat", "gfan_cfg_content_group", 12);
+			logger.info("Handler:etl.report.gfanmarket etl gfan_cfg_content date:"+date+" begin");
 			transformService.transformData("am", "stat", "gfan_cfg_content", 16);
+			logger.info("Handler:etl.report.gfanmarket etl hot_words date:"+date+" begin");
 			commonService.generateHotWords();
 			logger.info("Handler:etl.report.gfanmarket handler date:"+date+" successful");
 		} catch (SQLException e) {
