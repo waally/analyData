@@ -18,7 +18,7 @@
 		<property name="jobGroup" value="jobGroup"></property>
 		<property name="triggerName" value="triggerName"></property>
 		<property name="triggerGroup" value="triggerGroup"></property>
-		<property name="triggerTime" value="30 43 11 * * ?"></property>
+		<property name="triggerTime" value="00 00 09 * * ?"></property>
 		<property name="analysisGroup" ref="gfanMarketGroup"></property>
 	</bean>	
 	
@@ -32,6 +32,7 @@
 				<ref bean="downLoadHandler"/>
 				<ref bean="searchClickCleanHandler"/>
 				<ref bean="gfanCallHandler"/>
+				<ref bean="topicClickCleanHandler"/>
 			</list>
 		</property>
 	</bean>	

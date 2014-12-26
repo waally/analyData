@@ -4,44 +4,54 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
-
+	
+	<!--数据统计的处理器 -->
 	<bean id="gfanCallHandler" class="com.wangli.data.analysis.common.call.CallDataAnalysis">  
         <property name="name" value="gfancall"></property>
         <property name="dataSource" ref="dataSource"></property>
         <property name="calls">
 			<list>
 				<value>DayRepBanner</value>
-				<value>DayRepRecommend</value>
+                <value>DayRepRecommend</value>
+                <value>DayRepOperate</value>
+                <value>DayRepSearch</value>
+                <value>DayRepOperateTopic</value>
+                <value>DayRepTopic</value>
 			</list>
 		</property>
     </bean>
-    
+    <!--BANNER的点击分析的处理器 -->
 	<bean id="bannerClickHandler" class="com.wangli.data.etl.report.gfanmarket.impl.BannerClickCleanHandler">  
         <property name="name" value="bannerclick"></property>
         <property name="bannerClickCleanService" ref="bannerClickCleanService"></property>
     </bean>
-    
+    <!--所有的下载的点击分析的处理器 -->
 	<bean id="downLoadHandler" class="com.wangli.data.etl.report.gfanmarket.impl.BannerDownLoadCleanHandler">  
         <property name="name" value="download"></property>
         <property name="bannerDownLoadCleanService" ref="bannerDownLoadCleanService"></property>
     </bean>
-    
+    <!--推荐位和运营位的点击分析的处理器 -->
 	<bean id="recommendClickHandler" class="com.wangli.data.etl.report.gfanmarket.impl.RecommendClickCleanHandler">  
         <property name="name" value="recommendclick"></property>
         <property name="recommendClickCleanService" ref="recommendClickCleanService"></property>
     </bean>
-    
+    <!--特色的专题的点击分析的处理器 -->
+    <bean id="topicClickCleanHandler" class="com.wangli.data.etl.report.gfanmarket.impl.TopicClickCleanHandler">  
+        <property name="name" value="topicclick"></property>
+        <property name="topicClickCleanService" ref="topicClickCleanService"></property>
+    </bean>
+    <!--热词的点击分析的处理器 -->
     <bean id="searchClickCleanHandler" class="com.wangli.data.etl.report.gfanmarket.impl.SearchClickCleanHandler">  
         <property name="name" value="searchclick"></property>
         <property name="searchClickCleanService" ref="searchClickCleanService"></property>
     </bean>
-    
+    <!--数据转移和热词生成的处理器 -->
     <bean id="recommendDataHandler" class="com.wangli.data.etl.report.gfanmarket.RecommendMiddleDataHandler">  
         <property name="name" value="recommenddata"></property>
         <property name="commonService" ref="commonService"></property>
         <property name="transformService" ref="transformService"></property>
     </bean>
-    
+    <!-- 提供公共的一些的服务 -->
 	<bean id="commonService" class="com.wangli.data.etl.report.gfanmarket.service.CommonServiceImpl">  
         <property name="statVersionDAO" ref="statVersionDAO"></property>
         <property name="gfanCfgRankProductDAO" ref="gfanCfgRankProductDAO"></property>
@@ -50,7 +60,7 @@
         <property name="gfanCfgContentDAO" ref="gfanCfgContentDAO"></property>
         <property name="searchHotwordsLogDAO" ref="searchHotwordsLogDAO"></property>
     </bean>
-    
+    <!-- 数据的转移的服务 -->
     <bean id="transformService" class="com.wangli.data.etl.report.gfanmarket.service.TransformServiceImpl">  
         <property name="dataSources">
 			<map>
@@ -59,26 +69,32 @@
 			</map>
 		</property>
     </bean>
-    
+    <!--BANNER的点击分析的服务 -->
 	<bean id="bannerClickCleanService" class="com.wangli.data.etl.report.gfanmarket.service.BannerClickCleanServiceImpl">  
         <property name="clientEventLogDAO" ref="clientEventLogDAO"></property>
         <property name="gfanClientEventClickDAO" ref="gfanClientEventClickDAO"></property>
         <property name="commonService" ref="commonService"></property>
     </bean>
-    
+    <!--所有的下载的点击分析的服务 -->
     <bean id="bannerDownLoadCleanService" class="com.wangli.data.etl.report.gfanmarket.service.BannerDownLoadCleanServiceImpl">  
         <property name="clientEventLogDAO" ref="clientEventLogDAO"></property>
         <property name="gfanClientEventDownloadDAO" ref="gfanClientEventDownloadDAO"></property>
         <property name="commonService" ref="commonService"></property>
     </bean>
-    
+	<!--推荐位和运营位的点击分析的服务 -->
     <bean id="recommendClickCleanService" class="com.wangli.data.etl.report.gfanmarket.service.RecommendClickCleanServiceImpl">  
         <property name="clientEventLogDAO" ref="clientEventLogDAO"></property>
         <property name="gfanClientEventClickDAO" ref="gfanClientEventClickDAO"></property>
         <property name="commonService" ref="commonService"></property>
     </bean>
-    
+    <!--热词的点击分析的服务 -->
     <bean id="searchClickCleanService" class=" com.wangli.data.etl.report.gfanmarket.service.SearchClickCleanServiceImpl">  
+        <property name="clientEventLogDAO" ref="clientEventLogDAO"></property>
+        <property name="gfanClientEventClickDAO" ref="gfanClientEventClickDAO"></property>
+        <property name="commonService" ref="commonService"></property>
+    </bean>
+    <!--特色的专题的点击分析的服务 -->
+    <bean id="topicClickCleanService" class="com.wangli.data.etl.report.gfanmarket.service.TopicClickCleanServiceImpl">  
         <property name="clientEventLogDAO" ref="clientEventLogDAO"></property>
         <property name="gfanClientEventClickDAO" ref="gfanClientEventClickDAO"></property>
         <property name="commonService" ref="commonService"></property>

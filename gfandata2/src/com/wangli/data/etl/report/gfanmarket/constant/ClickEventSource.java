@@ -67,9 +67,17 @@ public enum ClickEventSource {
 	 */
 	OPERATEABB("2006",GfanMarketBehavior.OPERATEABB),
 	/**
+	 * 运营位-专题
+	 */
+	OPERATETOPIC("4002",GfanMarketBehavior.OPERATETOPIC),
+	/**
 	 * 运营位-搜索-标签
 	 */
-	SEARCHTITLE("6001",GfanMarketBehavior.SEARCHTITLE);
+	SEARCHTITLE("6001",GfanMarketBehavior.SEARCHTITLE),
+	/**
+	 * 特色-专题
+	 */
+	FEATURETOPIC("4001",GfanMarketBehavior.FEATURETOPIC);
 	
 	private String eventSource;
 	

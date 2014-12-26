@@ -80,6 +80,8 @@ public class CommonServiceImpl implements CommonService {
 				set = getOperateProductIdAll(behavior.getSign().getSign(), date);
 			}else if(behavior.getType()==GfanMarketBehaviorType.SEARCH){
 				set = getSerachHotWords(date);
+			}else if(behavior.getType()==GfanMarketBehaviorType.FEATURETOPIC){
+				set = getOperateGroupIdAll(behavior.getSign().getSign(),date);
 			}
 			recommendCache.put(behavior, set);
 		}
@@ -138,6 +140,18 @@ public class CommonServiceImpl implements CommonService {
 		}
 		return set;
 	}
+	
+	private  Map<String,Integer> getOperateGroupIdAll(String sign,Date date) throws SQLException{
+		Map<String,Integer> set = new HashMap<String,Integer>();
+		GfanCfgContentGroupExample example = new GfanCfgContentGroupExample();
+		example.createCriteria().andPublishTimeLessThanOrEqualTo(date).andCodeEqualTo(sign).andStatusEqualTo(1);
+		List<GfanCfgContentGroup> list = gfanCfgContentGroupDAO.selectByExample(example);
+		for(GfanCfgContentGroup group:list){
+			set.put(Integer.toString(group.getId()),group.getId());
+		}
+		return set;
+	}
+	
 	
 	private Map<String,Integer> getRecommendProductId(String sign,Date date) throws SQLException{
 		Map<String,Integer> set = new HashMap<String,Integer>();

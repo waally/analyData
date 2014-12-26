@@ -58,6 +58,7 @@ public class BannerDownLoadCleanHandler extends RecommendCleanHandler{
 		eventPaths.add(DownLoadEventPath.OPERATEGL);
 		eventPaths.add(DownLoadEventPath.OPERATEGR);
 		eventPaths.add(DownLoadEventPath.OPERATENECESSARY);
+		eventPaths.add(DownLoadEventPath.OPERATETOPIC);
 	}
 
 	@Override

@@ -65,7 +65,15 @@ public enum BehaviorSign {
 	/**
 	 * 运营位-应用-锋神榜
 	 */
-	OPERATEABB("app_gfanBillboard");
+	OPERATEABB("app_gfanBillboard"),
+	/**
+	 * 运营位-专题
+	 */
+	OPERATETOPIC("topic"),
+	/**
+	 * 运营位-专题
+	 */
+	FEATURETOPIC("topic");
 	
 	private String sign;
 

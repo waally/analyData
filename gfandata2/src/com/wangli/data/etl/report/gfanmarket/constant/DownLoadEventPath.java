@@ -65,7 +65,11 @@ public enum DownLoadEventPath {
 	/**
 	 * 运营位-应用-锋神榜
 	 */
-	OPERATEABB("^2006(,9002)?$",GfanMarketBehavior.OPERATEABB);
+	OPERATEABB("^2006(,9002)?$",GfanMarketBehavior.OPERATEABB),
+	/**
+	 * 运营位-专题
+	 */
+	OPERATETOPIC("^1,4001,4002(,9002)?$",GfanMarketBehavior.OPERATETOPIC);
 	
 	private String path;
 	

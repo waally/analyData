@@ -66,9 +66,17 @@ public enum GfanMarketBehavior {
 	 */
 	OPERATEABB(103006,GfanMarketBehaviorType.OPERATEALL,BehaviorSign.OPERATEABB),
 	/**
+	 * 运营位-专题
+	 */
+	OPERATETOPIC(103007,GfanMarketBehaviorType.OPERATEALL,BehaviorSign.OPERATETOPIC),
+	/**
 	 * 运营位-搜索-标签
 	 */
-	SEARCHTITLE(104001,GfanMarketBehaviorType.SEARCH,null);
+	SEARCHTITLE(104001,GfanMarketBehaviorType.SEARCH,null),
+	/**
+	 * 特色-专题
+	 */
+	FEATURETOPIC(105001,GfanMarketBehaviorType.FEATURETOPIC,BehaviorSign.FEATURETOPIC);
 	
 	private int behaviorId;
 	
